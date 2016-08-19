@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+
+## ABOUT
+
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by jdstein1 (http://jsbin.com/zopaqom/10/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+
+## RESOURCES:
+
+* [http://ejohn.org/blog/learning-from-twitter/](http://ejohn.org/blog/learning-from-twitter/)
+* [http://stackoverflow.com/questions/4929051/attaching-handlers-to-window-scroll-event](http://stackoverflow.com/questions/4929051/attaching-handlers-to-window-scroll-event)
+* [http://stackoverflow.com/questions/2863547/javascript-scroll-event-for-iphone-ipad](http://stackoverflow.com/questions/2863547/javascript-scroll-event-for-iphone-ipad)
+
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta name="description" 
+        content="Experiment with scroll event listeners.">
+  <meta charset="utf-8">
+  <meta name="viewport" 
+        content="width=device-width">
+  <title>scroll event experiment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<!-- <body id="body" onscroll="bodyScroll1"> -->
+<body id="body">
+  <div id="app" class="fun">
+    <header id="header">
+      <ul>
+        <li id="header-menu"><a href="#">Menu</a></li>
+        <li id="header-logo">Logo</li>
+        <li id="header-cart"><a href="#">Cart</a></li>
+        <li id="header-account"><a href="#">Account</a></li>
+        <li id="header-search"><a href="#">Search</a></li>
+      </ul>
+    </header>
+    <nav id="nav">
+      <ul class="nav-root">
+        <li id="nav-home"><a href="#">Home</a></li>
+        <li id="nav-departments" class="has-nav"><a href="#">Departments</a>
+          <ul class="nav-sub">
+            <li id="subnav-depts-1"><a href="#">Subnav 1</a></li>
+            <li id="subnav-depts-2"><a href="#">Subnav 2</a></li>
+            <li id="subnav-depts-3"><a href="#">Subnav 3</a></li>
+            <li id="subnav-depts-4"><a href="#">Subnav 4</a></li>
+            <li id="subnav-depts-5"><a href="#">Subnav 5</a></li>
+            <li id="subnav-depts-6"><a href="#">Subnav 6</a></li>
+            <li id="subnav-depts-7"><a href="#">Subnav 7</a></li>
+            <li id="subnav-depts-8"><a href="#">Subnav 8</a></li>
+            <li id="subnav-depts-9"><a href="#">Subnav 9</a></li>
+            <li id="subnav-depts-10"><a href="#">Subnav 10</a></li>
+            <li id="subnav-depts-11"><a href="#">Subnav 11</a></li>
+            <li id="subnav-depts-12"><a href="#">Subnav 12</a></li>
+            <li id="subnav-depts-13"><a href="#">Subnav 13</a></li>
+            <li id="subnav-depts-14"><a href="#">Subnav 14</a></li>
+            <li id="subnav-depts-15"><a href="#">Subnav 15</a></li>
+            <li id="subnav-depts-16"><a href="#">Subnav 16</a></li>
+            <li id="subnav-depts-17"><a href="#">Subnav 17</a></li>
+            <li id="subnav-depts-18"><a href="#">Subnav 18</a></li>
+          </ul>
+        </li>
+        <li id="nav-stores"><a href="#">Stores</a></li>
+        <li id="nav-deals"><a href="#">Deals</a></li>
+        <li id="nav-gifts"><a href="#">Gifts</a></li>
+        <li id="nav-lists"><a href="#">Lists</a></li>
+        <li id="nav-orders"><a href="#">Orders</a></li>
+        <li id="nav-layaway"><a href="#">Layaway</a></li>
+        <li id="nav-help"><a href="#">Help</a></li>
+      </ul>
+    </nav>
+    <div id="overlay"></div>
+    <div id="search" class="open">
+      <form action="">
+        <label id="searchAction" for="button-go">
+          <button id="button-go" class="button">GO</button>
+        </label>
+        <label id="searchInput" for="input-search">
+          <input id="input-search" type="text" placeholder="Search...">
+          <a id="search-close" class="open" href="#">close</a>
+          <a id="search-clear" href="#">clear</a>
+        </label>
+        <ul id="search-autocomplete">
+          <li>search autocomplete</li>
+          <li><a href="#"><b>be</b>atles</a></li>
+          <li><a href="#"><b>be</b>anie babies</a></li>
+          <li><a href="#"><b>be</b>lls</a></li>
+          <li><a href="#"><b>be</b>rnie sanders</a></li>
+          <li><a href="#"><b>be</b>ngal tigers</a></li>
+        </ul>
+        <ul id="search-history">
+          <li>search history</li>
+          <li><a href="#">cargo shorts</a></li>
+          <li><a href="#">jean shorts</a></li>
+          <li><a href="#">golf shorts</a></li>
+          <li><a href="#">khaki shorts</a></li>
+          <li><a href="#">boat shorts</a></li>
+        </ul>
+      </form>
+    </div>
+    <main id="main">
+      <h1>Welcome!</h1>
+      <form action="">
+        <label for="demoText">demoText
+          <input type="text">
+        </label>
+        <label for="demoSelect">demoSelect
+          <select name="demoSelect" id="demoSelect">
+            <option value="">Choose...</option>
+            <option value="1">Choice 1</option>
+            <option value="2">Choice 2</option>
+            <option value="3">Choice 3</option>
+          </select>
+        </label>
+        <label for="demoTextarea">demoTextarea
+          <textarea name="demoTextarea" id="demoTextarea"></textarea>
+        </label>
+      </form>
+    </main>
+    <footer id="footer"><p>&copy; 2016</p></footer>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
