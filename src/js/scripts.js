@@ -109,23 +109,23 @@ http://stackoverflow.com/questions/4929051/attaching-handlers-to-window-scroll-e
 // var bodyScroll1 = window.setInterval(tell, 100);
 
 // http://ejohn.org/blog/learning-from-twitter/#comment-391945
-// fire callback on page load, and X ms after end of onscroll event
+// fire callback (tell) on page load, and X ms after end of onscroll event
 var bodyScroll2 = function () {
   console.log('START bodyScroll2');
   if (timer) {
     clearTimeout(timer);
   }
-  timer = setTimeout(tell, 100)
+  timer = setTimeout(tell, 250);
 };
 
 // http://stackoverflow.com/a/11890228/1329637
-// 
+// fire callback (tell) on page load, and every X ms during onscroll event
 var bodyScroll3 = function () {
   console.log('START bodyScroll3');
   if (!scrollEnabled) {
     return;
   }
-  scrollEnabled = false; 
+  scrollEnabled = false;
   console.log('-- i am scrolling');
   return setTimeout((function() {
     scrollEnabled = true;
@@ -136,7 +136,7 @@ var bodyScroll3 = function () {
 
 // iterate over multiple scroll events
 scrollEvents.forEach(function(event){
-  console.info('START scrollEvents.forEach: ', event);
+  console.log('START scrollEvents.forEach: ', event);
   // console.log('++ event: ', event);
   window.addEventListener(event, function(e) {
     // console.log('++++ e: ', e.type);
@@ -146,7 +146,7 @@ scrollEvents.forEach(function(event){
 });
 
 function tell() {
-  console.log('start TELL');
+  console.group('START tell');
 
   console.log('oldPosition: ', oldPosition);
   newPosition = window.scrollY;
@@ -168,6 +168,7 @@ function tell() {
   }
   // set a new oldPosition for next run of funciton
   oldPosition = newPosition;
+  console.groupEnd();
 }
 
 var newNow = 0;
@@ -211,7 +212,7 @@ var addPara = function (number) {
     var newPara = document.createElement('p');
     var newLorem = document.createTextNode('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis temporibus aspernatur incidunt. Totam assumenda vel officiis debitis molestiae et, voluptatem voluptates, soluta dolorem labore. Repellat suscipit, beatae sapiente non consequuntur?');
     newPara.appendChild(newLorem);
-    lorem.appendChild(newPara); 
+    lorem.appendChild(newPara);
   }
 };
 addPara(20);
