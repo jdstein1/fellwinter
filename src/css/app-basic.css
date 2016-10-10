@@ -61,4 +61,4 @@ p {
 p:first-child {
     margin-top: 0;
 }
-.content {padding:1em;}
+.content {padding:10px;}
