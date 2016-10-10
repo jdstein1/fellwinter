@@ -1,0 +1,27 @@
+/* CAROUSEL */
+.carousel {
+  background-color: rgba(255,0,0,0.5);
+  width: 100%;
+  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.carousel-list {
+  background-color: rgba(0,255,0,0.5);
+  width: 500%;
+}
+.carousel-item {
+  background-color: rgba(0,0,255,0.5);
+  width: 20%;
+  overflow: hidden;
+  float: left;
+}
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+.carousel-item p {
+  width: 100%;
+  text-align: center;
+  
+}

@@ -26,7 +26,12 @@ Released under the MIT license: http://jsbin.mit-license.org
   <meta name="viewport" 
         content="width=device-width">
   <title>scroll event experiment</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="app-basic.css">
+  <link rel="stylesheet" href="app-layout.css">
+  <link rel="stylesheet" href="app-modules.css">
+  <link rel="stylesheet" href="app-carousel.css">
+  <link rel="stylesheet" href="app-test.css">
 </head>
 <!-- <body id="body" onscroll="bodyScroll1"> -->
 <body id="body">
@@ -104,23 +109,36 @@ Released under the MIT license: http://jsbin.mit-license.org
       </form>
     </div>
     <main id="main">
-      <h1>Welcome!</h1>
-      <form action="">
-        <label for="demoText">demoText
-          <input type="text">
-        </label>
-        <label for="demoSelect">demoSelect
-          <select name="demoSelect" id="demoSelect">
-            <option value="">Choose...</option>
-            <option value="1">Choice 1</option>
-            <option value="2">Choice 2</option>
-            <option value="3">Choice 3</option>
-          </select>
-        </label>
-        <label for="demoTextarea">demoTextarea
-          <textarea name="demoTextarea" id="demoTextarea"></textarea>
-        </label>
-      </form>
+      <div class="page-header">
+        <h1>Welcome!</h1>
+      </div>
+      <div class="carousel">
+        <ul class="carousel-list">
+          <li class="carousel-item"><img src="http://www.fillmurray.com/400/400" alt="carousel item 1"><p>carousel item 1 caption</p></li>
+          <li class="carousel-item"><img src="http://www.fillmurray.com/400/401" alt="carousel item 2"><p>carousel item 2 caption</p></li>
+          <li class="carousel-item"><img src="http://www.fillmurray.com/401/400" alt="carousel item 3"><p>carousel item 3 caption</p></li>
+          <li class="carousel-item"><img src="http://www.fillmurray.com/401/401" alt="carousel item 4"><p>carousel item 4 caption</p></li>
+          <li class="carousel-item"><img src="http://www.fillmurray.com/400/399" alt="carousel item 5"><p>carousel item 5 caption</p></li>
+        </ul>
+      </div>
+      <div class="content">
+        <form action="">
+          <label for="demoText">demoText
+            <input type="text">
+          </label>
+          <label for="demoSelect">demoSelect
+            <select name="demoSelect" id="demoSelect">
+              <option value="">Choose...</option>
+              <option value="1">Choice 1</option>
+              <option value="2">Choice 2</option>
+              <option value="3">Choice 3</option>
+            </select>
+          </label>
+          <label for="demoTextarea">demoTextarea
+            <textarea name="demoTextarea" id="demoTextarea"></textarea>
+          </label>
+        </form>
+      </div>
     </main>
     <footer id="footer"><p>&copy; 2016</p></footer>
   </div>

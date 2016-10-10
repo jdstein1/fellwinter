@@ -6,6 +6,7 @@ var body = document.getElementsByTagName("body")[0],
     navDepartments = document.getElementById("nav-departments"),
     overlay = document.getElementById("overlay"),
     main = document.getElementById("main"),
+    mainContent = main.getElementsByClassName("content")[0],
     search = document.getElementById("search"),
     buttonSearchGo = document.getElementById("button-go"),
     footer = document.getElementById("footer"),
@@ -211,7 +212,7 @@ var addPara = function (number) {
     var newPara = document.createElement('p');
     var newLorem = document.createTextNode('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis temporibus aspernatur incidunt. Totam assumenda vel officiis debitis molestiae et, voluptatem voluptates, soluta dolorem labore. Repellat suscipit, beatae sapiente non consequuntur?');
     newPara.appendChild(newLorem);
-    main.appendChild(newPara); 
+    mainContent.appendChild(newPara); 
   }
 };
 addPara(20);

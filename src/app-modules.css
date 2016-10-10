@@ -1,0 +1,97 @@
+/* HEADER */
+#header ul {
+    width: 100%;
+}
+#header ul li {
+    // display: inline-block;
+    float: left;
+}
+#header-menu {}
+#header-logo {
+    padding: 0.25em;
+    font-size: 1.5em;
+}
+#header-search, 
+#header-account, 
+#header-cart {
+    float: right !important;
+}
+/* NAV MENU */
+#nav ul {
+    width: 100%;
+}
+#nav ul li {
+    display: block;
+}
+#nav .nav-root li {border-bottom: 1px solid #999;}
+#nav .nav-sub li {padding-left: 1em;border-bottom:none;border-top: 1px solid #999; background-color: #ccc;}
+/* SEARCH */
+#search,
+#search #search-autocomplete,
+#search #search-history,
+#search #search-clear, 
+#search #search-close, 
+.nav-sub {
+    display: none;
+}
+#search.open {
+    display: block;
+}
+#searchInput,
+#searchAction {
+    width: auto;
+    position: relative;
+    overflow: hidden;
+    float: none;
+    display: block;
+    padding: 0.25em;
+    margin: 0 !important;
+}
+#searchInput {
+    min-width: 200px;
+}
+#searchAction {
+    float: right;
+    padding-left: 0;
+}
+#search #input-search {
+    padding-right: 4em;
+    width: 100%;
+}
+#search #button-go {}
+#search #search-autocomplete li:first-child, 
+#search #search-history li:first-child {padding:0 0.5em; color:#999; font-size: small;}
+#search #search-close,
+#search #search-clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    padding: 0.75em 1em;
+}
+#search #search-close {}
+#search #search-clear {}
+/* UTILITY */
+#nav.open {
+    position: fixed !important;
+    left: 0 !important;
+}
+.nav-sub.open, 
+#search #search-history.open, 
+#search #search-autocomplete.open, 
+#search #search-clear.open, 
+#search #search-close.open, 
+#overlay.open {
+    display: block;
+}
+.noscroll {
+    overflow: hidden;
+}
+#overlay {
+    display: none;
+}
+li.has-nav:before {content:"+";float:right;
+    padding: 0.25em 0.5em;
+    font-size: 1.5em;
+}

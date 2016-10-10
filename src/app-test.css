@@ -1,0 +1,27 @@
+/* test colors */
+#app > * {
+    opacity: 0.85;
+    margin: 0;
+    padding: 0;
+}
+#app {
+    background-color: #9f9;
+}
+#header {
+    background-color: #f99;
+}
+#nav {
+    background-color: #fff;
+}
+#overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#main {
+    background-color: #ff9;
+}
+#footer {
+    background-color: #f9f;
+}
+#search {
+    background-color: #9ff;
+}
