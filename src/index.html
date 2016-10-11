@@ -34,7 +34,7 @@ Released under the MIT license: http://jsbin.mit-license.org
   <link rel="stylesheet" href="css/app-test.css">
 </head>
 <!-- <body id="body" onscroll="bodyScroll1"> -->
-<body id="body">
+<body id="body" onload="autoScroll();">
   <div id="app" class="fun">
     <header id="header">
       <ul>
@@ -112,7 +112,7 @@ Released under the MIT license: http://jsbin.mit-license.org
       <div class="content page-header">
         <h1>Welcome!</h1>
       </div>
-      <div class="carousel">
+      <div class="carousel" id="myCarousel">
         <ul class="carousel-list">
           <li class="carousel-item"><img src="http://www.fillmurray.com/400/400" alt="carousel item 1"><p>carousel item 1 caption</p></li>
           <li class="carousel-item"><img src="http://www.fillmurray.com/400/401" alt="carousel item 2"><p>carousel item 2 caption</p></li>
@@ -121,6 +121,7 @@ Released under the MIT license: http://jsbin.mit-license.org
           <li class="carousel-item"><img src="http://www.fillmurray.com/400/399" alt="carousel item 5"><p>carousel item 5 caption</p></li>
         </ul>
       </div>
+      <button onclick="stopScroll()" id="scrollControl">Cease</button>
       <div class="content form">
         <form action="">
           <fieldset>
