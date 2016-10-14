@@ -5,36 +5,46 @@
 #header ul li {
     // display: inline-block;
     float: left;
+    line-height: 50px;
 }
-#header-menu {}
-#header-logo {
+#header ul li.active {
+  background-color: rgba(255,255,255,0.5);
+}
+#header--menu {}
+#header--logo {
     padding: 0.25em;
     font-size: 1.5em;
 }
-#header-search, 
-#header-account, 
-#header-cart {
+#header--search, 
+#header--account, 
+#header--cart {
     float: right !important;
 }
 /* NAV MENU */
-#nav ul {
+#menu .menu--root {background-color: #eee;}
+#menu .menu--sub {background-color: #ddd;}
+#menu ul {
     width: 100%;
 }
-#nav ul li {
+#menu ul li {
     display: block;
 }
-#nav .nav-root li {border-bottom: 1px solid #999;}
-#nav .nav-sub li {padding-left: 1em;border-bottom:none;border-top: 1px solid #999; background-color: #ccc;}
+#menu .menu--root li {border-bottom: 1px solid #ccc;}
+#menu .menu--sub li {padding-left: 1em;border-bottom:none;border-top: 1px solid #ccc;}
 /* SEARCH */
 #search,
 #search #search-autocomplete,
 #search #search-history,
 #search #search-clear, 
 #search #search-close, 
-.nav-sub {
+.menu--sub, 
+#account, 
+#cart {
     display: none;
 }
-#search.open {
+#search.open, 
+#account.open, 
+#cart.open {
     display: block;
 }
 #searchInput,
@@ -58,7 +68,7 @@
     padding-right: 4em;
     width: 100%;
 }
-#search #button-go {}
+#search #button--search_go {}
 #search #search-autocomplete li:first-child, 
 #search #search-history li:first-child {padding:0 0.5em; color:#999; font-size: small;}
 #search #search-close,
@@ -73,11 +83,13 @@
 #search #search-close {}
 #search #search-clear {}
 /* UTILITY */
-#nav.open {
+#menu.open {
     position: fixed !important;
     left: 0 !important;
+    // z-index: 9999;
+
 }
-.nav-sub.open, 
+.menu--sub.open, 
 #search #search-history.open, 
 #search #search-autocomplete.open, 
 #search #search-clear.open, 
@@ -91,7 +103,22 @@
 #overlay {
     display: none;
 }
-li.has-nav:before {content:"+";float:right;
+#overlay.open {
+    z-index: 8;
+}
+li.has-menu:before {content:"+";float:right;
     padding: 0.25em 0.5em;
     font-size: 1.5em;
+}
+#account, 
+#cart {position:absolute; top: 60px; right: 10px; bottom: auto; left: 10px;}
+.modal {
+  z-index: 99999; background-color: white; margin: 1em; 
+}
+.modal--close {
+  text-decoration: none; font-size: 2em; 
+  color: black !important; background-color: white; border-radius: 1em; height:1.5em; width:1.5em;
+  text-align: center;
+  line-height: 1.5;
+  position: absolute; top:-5px; right:-5px;
 }

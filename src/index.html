@@ -36,54 +36,68 @@ Released under the MIT license: http://jsbin.mit-license.org
 <!-- <body id="body" onscroll="bodyScroll1"> -->
 <body id="body" onload="autoScroll();">
   <div id="app" class="fun">
-    <header id="header">
+    <header id="header" class="shadow">
       <ul>
-        <li id="header-menu"><a href="#">Menu</a></li>
-        <li id="header-logo">Logo</li>
-        <li id="header-cart"><a href="#">Cart</a></li>
-        <li id="header-account"><a href="#">Account</a></li>
-        <li id="header-search"><a href="#">Search</a></li>
+        <li id="header--menu"><a href="#">Menu</a></li>
+        <li id="header--logo">Logo</li>
+        <li id="header--cart"><a href="#">Cart</a></li>
+        <li id="header--account"><a href="#">Account</a></li>
+        <li id="header--search"><a href="#">Search</a></li>
       </ul>
     </header>
-    <nav id="nav">
-      <ul class="nav-root">
-        <li id="nav-home"><a href="#">Home</a></li>
-        <li id="nav-departments" class="has-nav"><a href="#">Departments</a>
-          <ul class="nav-sub">
-            <li id="subnav-depts-1"><a href="#">Subnav 1</a></li>
-            <li id="subnav-depts-2"><a href="#">Subnav 2</a></li>
-            <li id="subnav-depts-3"><a href="#">Subnav 3</a></li>
-            <li id="subnav-depts-4"><a href="#">Subnav 4</a></li>
-            <li id="subnav-depts-5"><a href="#">Subnav 5</a></li>
-            <li id="subnav-depts-6"><a href="#">Subnav 6</a></li>
-            <li id="subnav-depts-7"><a href="#">Subnav 7</a></li>
-            <li id="subnav-depts-8"><a href="#">Subnav 8</a></li>
-            <li id="subnav-depts-9"><a href="#">Subnav 9</a></li>
-            <li id="subnav-depts-10"><a href="#">Subnav 10</a></li>
-            <li id="subnav-depts-11"><a href="#">Subnav 11</a></li>
-            <li id="subnav-depts-12"><a href="#">Subnav 12</a></li>
-            <li id="subnav-depts-13"><a href="#">Subnav 13</a></li>
-            <li id="subnav-depts-14"><a href="#">Subnav 14</a></li>
-            <li id="subnav-depts-15"><a href="#">Subnav 15</a></li>
-            <li id="subnav-depts-16"><a href="#">Subnav 16</a></li>
-            <li id="subnav-depts-17"><a href="#">Subnav 17</a></li>
-            <li id="subnav-depts-18"><a href="#">Subnav 18</a></li>
+    <nav id="menu" class="shadow">
+      <ul class="menu--root">
+        <li id="menu_root--home"><a href="#">Home</a></li>
+        <li id="menu_root--categories" class="has-menu"><a href="#">Categories</a>
+          <ul class="menu--sub">
+            <li><a href="#">Sub Category 1</a>
+              <ul class="menu--sub">
+                <li><a href="#">Sub Category 1</a></li>
+                <li><a href="#">Sub Category 2</a>
+                  <ul class="menu--sub">
+                    <li><a href="#">Sub Category 1</a></li>
+                    <li><a href="#">Sub Category 2</a></li>
+                    <li><a href="#">Sub Category 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Sub Category 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Sub Category 2</a></li>
+            <li><a href="#">Sub Category 3</a></li>
+            <li><a href="#">Sub Category 4</a></li>
+            <li><a href="#">Sub Category 5</a></li>
+            <li><a href="#">Sub Category 6</a></li>
+            <li><a href="#">Sub Category 7</a></li>
+            <li><a href="#">Sub Category 8</a></li>
+            <li><a href="#">Sub Category 9</a></li>
+            <li><a href="#">Sub Category 10</a></li>
+            <li><a href="#">Sub Category 11</a></li>
+            <li><a href="#">Sub Category 12</a></li>
+            <li><a href="#">Sub Category 13</a></li>
+            <li><a href="#">Sub Category 14</a></li>
+            <li><a href="#">Sub Category 15</a></li>
+            <li><a href="#">Sub Category 16</a></li>
+            <li><a href="#">Sub Category 17</a></li>
+            <li><a href="#">Sub Category 18</a></li>
+            <li><a href="#">Sub Category 19</a></li>
+            <li><a href="#">Sub Category 20</a></li>
           </ul>
         </li>
-        <li id="nav-stores"><a href="#">Stores</a></li>
-        <li id="nav-deals"><a href="#">Deals</a></li>
-        <li id="nav-gifts"><a href="#">Gifts</a></li>
-        <li id="nav-lists"><a href="#">Lists</a></li>
-        <li id="nav-orders"><a href="#">Orders</a></li>
-        <li id="nav-layaway"><a href="#">Layaway</a></li>
-        <li id="nav-help"><a href="#">Help</a></li>
+        <li id="menu_root--stores"><a href="#">Locations</a></li>
+        <li id="menu_root--deals"><a href="#">Deals</a></li>
+        <li id="menu_root--gifts"><a href="#">Gifts</a></li>
+        <li id="menu_root--lists"><a href="#">Lists</a></li>
+        <li id="menu_root--orders"><a href="#">Orders</a></li>
+        <li id="menu_root--layaway"><a href="#">Layaway</a></li>
+        <li id="menu_root--help"><a href="#">Help</a></li>
       </ul>
     </nav>
     <div id="overlay"></div>
-    <div id="search" class="open">
+    <div id="search">
       <form action="">
-        <label id="searchAction" for="button-go">
-          <button id="button-go" class="button">GO</button>
+        <label id="searchAction" for="button--search_go">
+          <button id="button--search_go" class="button">GO</button>
         </label>
         <label id="searchInput" for="input-search">
           <input id="input-search" type="text" placeholder="Search...">
@@ -111,17 +125,35 @@ Released under the MIT license: http://jsbin.mit-license.org
     <main id="main">
       <div class="content page-header">
         <h1>Welcome!</h1>
+        <h2>Welcome to Fellwinter</h2>
+        <p>A platform for responsive web experiences in authentic b2c and integrated e-commerce synergies.</p>
       </div>
-      <div class="carousel" id="myCarousel">
-        <ul class="carousel-list">
-          <li class="carousel-item"><img src="http://www.fillmurray.com/400/400" alt="carousel item 1"><p>carousel item 1 caption</p></li>
-          <li class="carousel-item"><img src="http://www.fillmurray.com/400/401" alt="carousel item 2"><p>carousel item 2 caption</p></li>
-          <li class="carousel-item"><img src="http://www.fillmurray.com/401/400" alt="carousel item 3"><p>carousel item 3 caption</p></li>
-          <li class="carousel-item"><img src="http://www.fillmurray.com/401/401" alt="carousel item 4"><p>carousel item 4 caption</p></li>
-          <li class="carousel-item"><img src="http://www.fillmurray.com/400/399" alt="carousel item 5"><p>carousel item 5 caption</p></li>
+      <div class="carousel-box group">
+        <div class="content">
+          <h3>Fancy Carousel Module</h3>
+        </div>
+        <div class="carousel" id="myCarousel">
+          <ul class="carousel-list">
+            <li class="carousel-item"><img src="http://www.fillmurray.com/400/400" alt="carousel item 1"><p>carousel item 1 caption</p></li>
+            <li class="carousel-item"><img src="http://www.fillmurray.com/400/401" alt="carousel item 2"><p>carousel item 2 caption</p></li>
+            <li class="carousel-item"><img src="http://www.fillmurray.com/401/400" alt="carousel item 3"><p>carousel item 3 caption</p></li>
+            <li class="carousel-item"><img src="http://www.fillmurray.com/401/401" alt="carousel item 4"><p>carousel item 4 caption</p></li>
+            <li class="carousel-item"><img src="http://www.fillmurray.com/400/399" alt="carousel item 5"><p>carousel item 5 caption</p></li>
+          </ul>
+        </div>
+        <ul class="carousel-nav">
+          <li class="carousel-dot">&middot;</li>
+          <li class="carousel-dot">&middot;</li>
+          <li class="carousel-dot">&middot;</li>
+          <li class="carousel-dot">&middot;</li>
+          <li class="carousel-dot">&middot;</li>
         </ul>
       </div>
-      <button onclick="stopScroll()" id="scrollControl">Cease</button>
+      <div class="content">
+        <label for="scrollControl">Carousel Control:
+          <button onclick="stopScroll()" id="scrollControl" name="scrollControl">Cease</button>
+        </label>
+      </div>
       <div class="content form">
         <form action="">
           <fieldset>
@@ -145,6 +177,20 @@ Released under the MIT license: http://jsbin.mit-license.org
       </div>
       <div class="content lorem"></div>
     </main>
+    <div id="account" class="modal shadow">
+      <div class="content">
+        <a href="#" class="modal--close shadow">X</a>
+        <h2>Account</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda possimus, ducimus repellendus id, quia vitae. Reprehenderit at cum nisi sequi ipsum enim ab ullam! Aspernatur pariatur excepturi veniam, numquam.</p>
+      </div>
+    </div>
+    <div id="cart" class="modal shadow">
+      <div class="content">
+        <a href="#" class="modal--close shadow">X</a>
+        <h2>Cart</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda possimus, ducimus repellendus id, quia vitae. Reprehenderit at cum nisi sequi ipsum enim ab ullam! Aspernatur pariatur excepturi veniam, numquam.</p>
+      </div>
+    </div>
     <footer id="footer"><p class="content">&copy; 2016</p></footer>
   </div>
   <script src="js/scripts.js"></script>

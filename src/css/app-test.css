@@ -1,6 +1,6 @@
 /* test colors */
 #app > * {
-    opacity: 0.85;
+    opacity: 0.95;
     margin: 0;
     padding: 0;
 }
@@ -10,11 +10,11 @@
 #header {
     background-color: #f99;
 }
-#nav {
+#menu {
     background-color: #fff;
 }
 #overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(127, 127, 127, 0.85);
 }
 #main {
     background-color: #ff9;

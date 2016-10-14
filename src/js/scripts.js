@@ -1,17 +1,23 @@
 var body = document.getElementsByTagName("body")[0], 
     app = document.getElementById("app"), 
     header = document.getElementById("header"),
-    nav = document.getElementById("nav"),
-    navSub = document.getElementsByClassName("nav-sub"),
-    navDepartments = document.getElementById("nav-departments"),
+    menu = document.getElementById("menu"),
+    menuRoot = document.getElementsByClassName("menu--root"),
+    menuSub = document.getElementsByClassName("menu--sub"),
+    menuCategories = document.getElementById("menu_root--categories"),
     overlay = document.getElementById("overlay"),
     main = document.getElementById("main"),
     lorem = document.getElementsByClassName("lorem")[0],
-    search = document.getElementById("search"),
-    buttonSearchGo = document.getElementById("button-go"),
+    modalClose = document.getElementsByClassName("modal--close"),
+    moduleSearch = document.getElementById("search"),
+    moduleAccount = document.getElementById("account"),
+    moduleCart = document.getElementById("cart"),
+    buttonSearchGo = document.getElementById("button--search_go"),
     footer = document.getElementById("footer"),
-    headerMenu = document.getElementById("header-menu"),
-    headerSearch = document.getElementById("header-search"),
+    menuIcon = document.getElementById("header--menu"),
+    searchIcon = document.getElementById("header--search"),
+    accountIcon = document.getElementById("header--account"),
+    cartIcon = document.getElementById("header--cart"),
     inputSearch = document.getElementById("input-search"),
     searchClose = document.getElementById("search-close"),
     searchClear = document.getElementById("search-clear"),
@@ -19,24 +25,46 @@ var body = document.getElementsByTagName("body")[0],
     searchHistory = document.getElementById("search-history"), 
     timeout = null;
 
-headerMenu.addEventListener('click', function () {
-  console.log('CLICK MENU BUTTON');
+menuIcon.addEventListener('click', function () {
+  console.log('CLICK MENU ICON');
   toggleMenu();
 });
 
-navDepartments.addEventListener('click', function () {
+menuCategories.addEventListener('click', function () {
   console.log('CLICK SHOP DEPARTMENTS BUTTON');
   toggleSubMenu();
 });
 
 overlay.addEventListener('click', function () {
   console.log('CLICK OVERLAY');
-  toggleMenu();
+  closeAll();
 });
 
-headerSearch.addEventListener('click', function () {
-  console.log('CLICK SEARCH BUTTON');
+// modalClose.addEventListener('click', function () {
+//   console.log('CLICK MODAL CLOSE');
+//   closeAll();
+// });
+
+for (var i = 0; i < modalClose.length; i++) {
+  modalClose[i].addEventListener('click', function () {
+    console.log('CLICK MODAL CLOSE');
+    closeAll();
+  });
+};
+
+searchIcon.addEventListener('click', function () {
+  console.log('CLICK SEARCH ICON');
   toggleSearch();
+});
+
+accountIcon.addEventListener('click', function () {
+  console.log('CLICK ACCOUNT ICON');
+  toggleAccount();
+});
+
+cartIcon.addEventListener('click', function () {
+  console.log('CLICK CART ICON');
+  toggleCart();
 });
 
 inputSearch.addEventListener('focus', function () {
@@ -79,20 +107,69 @@ var toggleSearchCloseClear = function () {
   }
 };
 
+var closeAll = function () {
+  console.log('CLOSE ALL');
+  // close menu, account, cart
+  var array = [menu, account, cart];
+  for (var i = 0; i < array.length; i++) {
+    
+    // if (array[i].classList.contains("open")) {
+      // console.log(array[i].id);
+      var elId = "header--"+array[i].id;
+      // console.log(document.getElementById(elId));
+      document.getElementById(elId).classList.remove("active");
+      array[i].classList.remove("open");
+    // }
+  }
+  overlay.classList.remove("open");
+  body.classList.remove("noscroll")
+};
+
 var toggleMenu = function () {
-  nav.classList.toggle("open");
+  console.log('TOGGLE MENU');
+  closeAll();
+  // if (menu.classList.contains("open")) {
+  //   console.log('menu is open');
+  // } else {
+  //   console.log('menu is closed');
+  // }
+  menuIcon.classList.toggle("active");
+  menu.classList.toggle("open");
   overlay.classList.toggle("open");
   body.classList.toggle("noscroll")
 };
 
 var toggleSubMenu = function () {
-  navSub[0].classList.toggle("open");
+  console.log('TOGGLE SUBMENU');
+  menuSub[0].classList.toggle("open");
 };
 
 var toggleSearch = function () {
-  search.classList.toggle("open");
+  console.log('TOGGLE SEARCH');
+  closeAll();
+  searchIcon.classList.toggle("active");
+  moduleSearch.classList.toggle("open");
   searchAutocomplete.classList.remove("open");
   searchHistory.classList.remove("open");
+};
+toggleSearch();
+
+var toggleAccount = function () {
+  console.log('TOGGLE ACCOUNT');
+  // closeAll();
+  accountIcon.classList.toggle("active");
+  overlay.classList.toggle("open");
+  moduleAccount.classList.toggle("open");
+  body.classList.toggle("noscroll")
+};
+
+var toggleCart = function () {
+  console.log('TOGGLE CART');
+  // closeAll();
+  cartIcon.classList.toggle("active");
+  overlay.classList.toggle("open");
+  moduleCart.classList.toggle("open");
+  body.classList.toggle("noscroll")
 };
 
 var timer = 0, oldPosition = window.scrollY, newPosition = window.scrollY, scrollEnabled = true, scrollEvents = [

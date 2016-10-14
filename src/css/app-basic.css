@@ -35,6 +35,7 @@ fieldset:first-child,
 label:first-child {
     margin-top: 0;
 }
+legend {font-weight: bold;}
 input,
 button,
 textarea,
@@ -62,3 +63,12 @@ p:first-child {
     margin-top: 0;
 }
 .content {padding:10px;}
+.shadow {box-shadow: 0 3px 1px 0 rgba(0,0,0,0.2);}
+/*
+http://css-tricks.com/snippets/css/clear-fix/
+ */
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
