@@ -1,4 +1,4 @@
-/* CAROUSEL */
+/* CAROUSEL FUNCTIONS */
 
 var carousel = document.getElementsByClassName("carousel")[0], 
   carouselList = document.getElementsByClassName("carousel-list")[0], 
