@@ -45,6 +45,7 @@ overlay.addEventListener('click', function () {
 //   closeAll();
 // });
 
+// attach "closeAll" func to all modal close icons via click event listener.
 for (var i = 0; i < modalClose.length; i++) {
   modalClose[i].addEventListener('click', function () {
     console.log('CLICK MODAL CLOSE');
@@ -52,6 +53,7 @@ for (var i = 0; i < modalClose.length; i++) {
   });
 };
 
+// attach 
 searchIcon.addEventListener('click', function () {
   console.log('CLICK SEARCH ICON');
   toggleSearch();
