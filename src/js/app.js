@@ -7,6 +7,8 @@ var body = document.getElementsByTagName("body")[0],
     menuRoot = document.getElementsByClassName("menu--root"),
     menuSub = document.getElementsByClassName("menu--sub"),
     menuCategories = document.getElementById("menu_root--categories"),
+    menuHome = document.getElementById("menu_root--home"),
+    menuAbout = document.getElementById("menu_root--about"),
     overlay = document.getElementById("overlay"),
     main = document.getElementById("main"),
     lorem = document.getElementsByClassName("lorem")[0],
@@ -91,6 +93,42 @@ searchClear.addEventListener('click', function () {
 
 buttonSearchGo.addEventListener('click', function () {
   console.log('CLICK SEARCH GO BUTTON');
+});
+
+function showHome(event) {
+  // load HOME content...
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', './home.html', true);
+  xhr.onreadystatechange = function() {
+      if (this.readyState !== 4) return;
+      if (this.status !== 200) return; // or whatever error handling you want
+      main.innerHTML = this.responseText;
+  };
+  xhr.send();
+
+}
+
+menuHome.addEventListener('click', function () {
+  console.log('CLICK HOME MENU LINK');
+  showHome();
+});
+
+function showAbout(event) {
+  // load ABOUT content...
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', './about.html', true);
+  xhr.onreadystatechange = function() {
+      if (this.readyState !== 4) return;
+      if (this.status !== 200) return; // or whatever error handling you want
+      main.innerHTML = this.responseText;
+  };
+  xhr.send();
+
+}
+
+menuAbout.addEventListener('click', function () {
+  console.log('CLICK ABOUT MENU LINK');
+  showAbout();
 });
 
 var toggleSearchCloseClear = function () {
