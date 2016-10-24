@@ -1,36 +1,32 @@
 /* HEADER */
 #header ul {
-    width: 100%;
+  width: 100%;
 }
 #header ul li {
-    // display: inline-block;
-    float: left;
-    line-height: 50px;
+  // display: inline-block;
+  float: left;
+  line-height: 50px;
 }
-#header ul li.active {
-  background-color: rgba(255,255,255,0.5);
-}
+#header ul li.active {background-color: rgba(255,255,255,0.5);}
 #header--menu {}
 #header--logo {
-    padding: 0.25em;
-    font-size: 1.5em;
+  padding: 0.25em;
+  font-size: 1.5em;
 }
 #header--search, 
 #header--account, 
-#header--cart {
-    float: right !important;
-}
+#header--cart {float: right !important;}
 /* NAV MENU */
-#menu .menu--root {background-color: #eee;}
+#menu #menu--root {background-color: #eee;}
 #menu .menu--sub {background-color: #ddd;}
-#menu ul {
-    width: 100%;
+#menu ul {width: 100%;}
+#menu ul li {display: block;}
+#menu #menu--root li {border-bottom: 1px solid #ccc;}
+#menu .menu--sub li {
+  padding-left: 1em;
+  border-bottom:none;
+  border-top: 1px solid #ccc;
 }
-#menu ul li {
-    display: block;
-}
-#menu .menu--root li {border-bottom: 1px solid #ccc;}
-#menu .menu--sub li {padding-left: 1em;border-bottom:none;border-top: 1px solid #ccc;}
 /* SEARCH */
 #search,
 #search #search-autocomplete,
@@ -39,54 +35,52 @@
 #search #search-close, 
 .menu--sub, 
 #account, 
-#cart {
-    display: none;
-}
+#cart {display: none;}
 #search.open, 
 #account.open, 
-#cart.open {
-    display: block;
-}
+#cart.open {display: block;}
 #searchInput,
 #searchAction {
-    width: auto;
-    position: relative;
-    overflow: hidden;
-    float: none;
-    display: block;
-    padding: 0.25em;
-    margin: 0 !important;
+  width: auto;
+  position: relative;
+  overflow: hidden;
+  float: none;
+  display: block;
+  padding: 0.25em;
+  margin: 0 !important;
 }
-#searchInput {
-    min-width: 200px;
-}
+#searchInput {min-width: 200px;}
 #searchAction {
-    float: right;
-    padding-left: 0;
+  float: right;
+  padding-left: 0;
 }
 #search #input-search {
-    padding-right: 4em;
-    width: 100%;
+  padding-right: 4em;
+  width: 100%;
 }
 #search #button--search_go {}
 #search #search-autocomplete li:first-child, 
-#search #search-history li:first-child {padding:0 0.5em; color:#999; font-size: small;}
+#search #search-history li:first-child {
+  padding:0 0.5em;
+  color:#999;
+  font-size: small;
+}
 #search #search-close,
 #search #search-clear {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: auto;
-    padding: 0.75em 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  padding: 0.75em 1em;
 }
 #search #search-close {}
 #search #search-clear {}
 /* UTILITY */
 #menu.open {
-    position: fixed !important;
-    left: 0 !important;
-    // z-index: 9999;
+  position: fixed !important;
+  left: 0 !important;
+  // z-index: 9999;
 
 }
 .menu--sub.open, 
@@ -94,31 +88,40 @@
 #search #search-autocomplete.open, 
 #search #search-clear.open, 
 #search #search-close.open, 
-#overlay.open {
-    display: block;
-}
-.noscroll {
-    overflow: hidden;
-}
-#overlay {
-    display: none;
-}
-#overlay.open {
-    z-index: 8;
-}
-li.has-menu:before {content:"+";float:right;
-    padding: 0.25em 0.5em;
-    font-size: 1.5em;
+#overlay.open {display: block;}
+.noscroll {overflow: hidden;}
+#overlay {display: none;}
+#overlay.open {z-index: 8;}
+li.has-menu:before {
+  content:"+";
+  float:right;
+  padding: 0.25em 0.5em;
+  font-size: 1.5em;
 }
 #account, 
-#cart {position:absolute; top: 60px; right: 10px; bottom: auto; left: 10px;}
+#cart {
+  position:absolute;
+  top: 60px;
+  right: 10px;
+  bottom: auto;
+  left: 10px;
+}
 .modal {
-  z-index: 99999; background-color: white; margin: 1em; 
+  z-index: 99999;
+  background-color: white;
+  margin: 1em;
 }
 .modal--close {
-  text-decoration: none; font-size: 2em; 
-  color: black !important; background-color: white; border-radius: 1em; height:1.5em; width:1.5em;
+  text-decoration: none;
+  font-size: 2em;
+  color: black !important;
+  background-color: #eee;
+  border-radius: 1em;
+  height:1.5em;
+  width:1.5em;
   text-align: center;
   line-height: 1.5;
-  position: absolute; top:-5px; right:-5px;
+  position: absolute;
+  top:-5px;
+  right:-5px;
 }

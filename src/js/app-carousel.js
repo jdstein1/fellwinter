@@ -5,7 +5,8 @@ var carousel = document.getElementsByClassName("carousel")[0],
   carouselListItems = document.getElementsByClassName("carousel-item"), 
   carouselNav = document.getElementsByClassName("carousel-nav")[0], 
   carouselNavDots = document.getElementsByClassName("carousel-dot"), 
-  scrollControl = document.getElementById("scrollControl"), 
+  scrollControl1 = document.getElementById("scrollControl1"), 
+  scrollControl2 = document.getElementById("scrollControl2"), 
   carouselIndex = 0;
   carouselLength = carouselListItems.length;
 
@@ -52,19 +53,22 @@ function doScroll() {
   carouselNavDots[carouselIndex].classList.add("active");
 }
 
-// stop automatically scrolling
-function stopScroll() {
-  // console.log('START stopScroll');
+// rause/resume automatically scrolling
+function scrollControl() {
+  // console.log('START scrollControl');
   if (scrollingFlag === true) {
     // alter text of control button.
-    scrollControl.innerHTML = "Resume";
+    scrollControl1.disabled = true;
+    scrollControl2.disabled = false;
     window.clearInterval(intervalID);
     // set flag to false to indicate autoscrolling has stopped.
     scrollingFlag = false;
   } else {
     // alter text of control button.
-    scrollControl.innerHTML = "Stop Again";
+    scrollControl1.disabled = false;
+    scrollControl2.disabled = true;
     // get the autoscroll interval going again.
+    scrollingFlag = true;
     autoScroll();
   }
 }

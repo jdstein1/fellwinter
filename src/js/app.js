@@ -4,7 +4,7 @@ var body = document.getElementsByTagName("body")[0],
     app = document.getElementById("app"), 
     header = document.getElementById("header"),
     menu = document.getElementById("menu"),
-    menuRoot = document.getElementsByClassName("menu--root"),
+    menuRoot = document.getElementById("menu--root"),
     menuSub = document.getElementsByClassName("menu--sub"),
     menuCategories = document.getElementById("menu_root--categories"),
     menuHome = document.getElementById("menu_root--home"),
@@ -146,15 +146,14 @@ var toggleSearchCloseClear = function () {
 };
 
 var closeAll = function () {
-  console.log('CLOSE ALL');
+  console.log('START closeAll');
   // close menu, account, cart
   var array = [menu, account, cart];
   for (var i = 0; i < array.length; i++) {
-    
     // if (array[i].classList.contains("open")) {
-      // console.log(array[i].id);
+      console.log('closeAll: ', array[i].id);
       var elId = "header--"+array[i].id;
-      // console.log(document.getElementById(elId));
+      console.log(document.getElementById(elId));
       document.getElementById(elId).classList.remove("active");
       array[i].classList.remove("open");
     // }
@@ -163,8 +162,17 @@ var closeAll = function () {
   body.classList.remove("noscroll")
 };
 
+var toggleHeaderItem = function () {
+  console.log('START toggleHeaderItem');
+  closeAll();
+  headerIconAccount.classList.toggle("active");
+  overlay.classList.toggle("open");
+  moduleAccount.classList.toggle("open");
+  body.classList.toggle("noscroll")
+};
+
 var toggleMenu = function () {
-  console.log('TOGGLE MENU');
+  console.log('START toggleMenu');
   closeAll();
   // if (menu.classList.contains("open")) {
   //   console.log('menu is open');
@@ -178,7 +186,7 @@ var toggleMenu = function () {
 };
 
 var toggleSearch = function () {
-  console.log('TOGGLE SEARCH');
+  console.log('START toggleSearch');
   closeAll();
   headerIconSearch.classList.toggle("active");
   moduleSearch.classList.toggle("open");
@@ -188,8 +196,8 @@ var toggleSearch = function () {
 toggleSearch();
 
 var toggleAccount = function () {
-  console.log('TOGGLE ACCOUNT');
-  // closeAll();
+  console.log('START toggleAccount');
+  closeAll();
   headerIconAccount.classList.toggle("active");
   overlay.classList.toggle("open");
   moduleAccount.classList.toggle("open");
@@ -197,8 +205,8 @@ var toggleAccount = function () {
 };
 
 var toggleCart = function () {
-  console.log('TOGGLE CART');
-  // closeAll();
+  console.log('START toggleCart');
+  closeAll();
   headerIconCart.classList.toggle("active");
   overlay.classList.toggle("open");
   moduleCart.classList.toggle("open");

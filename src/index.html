@@ -29,6 +29,7 @@ Released under the MIT license: http://jsbin.mit-license.org
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/app-layout.css">
+  <link rel="stylesheet" href="css/app-grid.css">
   <link rel="stylesheet" href="css/app-modules.css">
   <link rel="stylesheet" href="css/app-carousel.css">
   <link rel="stylesheet" href="css/app-test.css">
@@ -46,7 +47,7 @@ Released under the MIT license: http://jsbin.mit-license.org
       </ul>
     </header>
     <nav id="menu" class="shadow">
-      <ul class="menu--root">
+      <ul id="menu--root">
         <li id="menu_root--home"><a href="#">Home</a></li>
         <li id="menu_root--about"><a href="#">About</a></li>
         <li id="menu_root--categories" class="has-menu"><a href="#">Categories</a>
@@ -149,11 +150,14 @@ Released under the MIT license: http://jsbin.mit-license.org
           <li class="carousel-dot">&middot;</li>
           <li class="carousel-dot">&middot;</li>
         </ul>
-      </div>
-      <div class="content">
-        <label for="scrollControl">Carousel Control:
-          <button onclick="stopScroll()" id="scrollControl" name="scrollControl">Cease</button>
-        </label>
+        <div class="content group">
+          <fieldset class="grid2">
+            <button onclick="scrollControl()" id="scrollControl1" name="scrollControl1">Pause</button>
+          </fieldset>
+          <fieldset class="grid2">
+            <button onclick="scrollControl()" id="scrollControl2" name="scrollControl2" disabled>Play</button>
+          </fieldset>
+        </div>
       </div>
       <div class="content form">
         <form action="">

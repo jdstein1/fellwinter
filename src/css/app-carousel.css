@@ -1,4 +1,5 @@
 /* CAROUSEL */
+.carousel-box {background-color: rgba(255,0,0,0.25);}
 .carousel {
   background-color: rgba(255,0,0,0.5);
   width: 100%;
