@@ -1,0 +1,22 @@
+{
+  "name": "felwinter",
+  "description": "A platform-agnostic framework for responsive web experiences in authentic b2c and integrated e-commerce synergies.",
+  "main": "index.js",
+  "authors": [
+    "jdstein1"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jdstein1/felwinter",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flickity": "^2.0.5",
+    "jquery": "^3.1.1"
+  }
+}

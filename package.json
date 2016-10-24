@@ -1,0 +1,25 @@
+{
+  "name": "felwinter",
+  "version": "1.0.0",
+  "description": "A platform-agnostic framework for responsive web experiences in authentic b2c and integrated e-commerce synergies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdstein1/felwinter.git"
+  },
+  "author": "jdstein1",
+  "license": "ISC",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/jdstein1/felwinter/issues"
+  },
+  "homepage": "https://github.com/jdstein1/felwinter#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "express": "^4.14.0"
+  }
+}
