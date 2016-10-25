@@ -1,5 +1,7 @@
 /* CAROUSEL FUNCTIONS */
 
+/* @license */
+
 var carousel = document.getElementsByClassName("carousel")[0], 
   carouselList = document.getElementsByClassName("carousel-list")[0], 
   carouselListItems = document.getElementsByClassName("carousel-item"), 

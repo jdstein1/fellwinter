@@ -1,5 +1,7 @@
 /* APP FUNCTIONS */
 
+/* @license */
+
 var body = document.getElementsByTagName("body")[0], 
     app = document.getElementById("app"), 
     header = document.getElementById("header"),
@@ -102,6 +104,7 @@ function showPage(page) {
       main.innerHTML = this.responseText;
   };
   xhr.send();
+  closeAll();
 }
 
 // menuHome.addEventListener('click', function () {
