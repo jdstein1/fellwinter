@@ -2,7 +2,7 @@
   "name": "felwinter",
   "version": "1.0.0",
   "description": "A platform-agnostic framework for responsive web experiences in authentic b2c and integrated e-commerce synergies.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,9 +17,21 @@
     "url": "https://github.com/jdstein1/felwinter/issues"
   },
   "homepage": "https://github.com/jdstein1/felwinter#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "express": "^4.14.0"
+    "browser-sync": "^2.17.5",
+    "copy": "^0.3.0",
+    "del": "^2.2.2",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev": "^7.1.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-usemin": "^0.3.24",
+    "jshint": "^2.9.4",
+    "wiredep": "^4.0.0"
   }
 }

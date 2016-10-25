@@ -47,11 +47,8 @@ overlay.addEventListener('click', function () {
 
 // attach "closeAll" func to all modal close icons via click event listener.
 for (var i = 0; i < modalClose.length; i++) {
-  modalClose[i].addEventListener('click', function () {
-    console.log('CLICK MODAL CLOSE');
-    closeAll();
-  });
-};
+  modalClose[i].onclick = closeAll;
+}
 
 // attach 
 headerIconSearch.addEventListener('click', function () {
@@ -95,41 +92,39 @@ buttonSearchGo.addEventListener('click', function () {
   console.log('CLICK SEARCH GO BUTTON');
 });
 
-function showHome(event) {
+function showPage(page) {
   // load HOME content...
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', './home.html', true);
+  xhr.open('GET', page+'.html', true);
   xhr.onreadystatechange = function() {
       if (this.readyState !== 4) return;
       if (this.status !== 200) return; // or whatever error handling you want
       main.innerHTML = this.responseText;
   };
   xhr.send();
-
 }
 
-menuHome.addEventListener('click', function () {
-  console.log('CLICK HOME MENU LINK');
-  showHome();
-});
+// menuHome.addEventListener('click', function () {
+//   console.log('CLICK HOME MENU LINK');
+//   showHome();
+// });
 
-function showAbout(event) {
-  // load ABOUT content...
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', './about.html', true);
-  xhr.onreadystatechange = function() {
-      if (this.readyState !== 4) return;
-      if (this.status !== 200) return; // or whatever error handling you want
-      main.innerHTML = this.responseText;
-  };
-  xhr.send();
+// function showAbout() {
+//   // load ABOUT content...
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('GET', 'about.html', true);
+//   xhr.onreadystatechange = function() {
+//       if (this.readyState !== 4) return;
+//       if (this.status !== 200) return; // or whatever error handling you want
+//       main.innerHTML = this.responseText;
+//   };
+//   xhr.send();
+// }
 
-}
-
-menuAbout.addEventListener('click', function () {
-  console.log('CLICK ABOUT MENU LINK');
-  showAbout();
-});
+// menuAbout.addEventListener('click', function () {
+//   console.log('CLICK ABOUT MENU LINK');
+//   showAbout();
+// });
 
 var toggleSearchCloseClear = function () {
   if (inputSearch.value) {
@@ -145,7 +140,7 @@ var toggleSearchCloseClear = function () {
   }
 };
 
-var closeAll = function () {
+function closeAll () {
   console.log('START closeAll');
   // close menu, account, cart
   var array = [menu, account, cart];
@@ -159,8 +154,8 @@ var closeAll = function () {
     // }
   }
   overlay.classList.remove("open");
-  body.classList.remove("noscroll")
-};
+  body.classList.remove("noscroll");
+}
 
 var toggleHeaderItem = function () {
   console.log('START toggleHeaderItem');
@@ -168,7 +163,7 @@ var toggleHeaderItem = function () {
   headerIconAccount.classList.toggle("active");
   overlay.classList.toggle("open");
   moduleAccount.classList.toggle("open");
-  body.classList.toggle("noscroll")
+  body.classList.toggle("noscroll");
 };
 
 var toggleMenu = function () {
@@ -182,7 +177,7 @@ var toggleMenu = function () {
   headerIconMenu.classList.toggle("active");
   menu.classList.toggle("open");
   overlay.classList.toggle("open");
-  body.classList.toggle("noscroll")
+  body.classList.toggle("noscroll");
 };
 
 var toggleSearch = function () {
@@ -201,7 +196,7 @@ var toggleAccount = function () {
   headerIconAccount.classList.toggle("active");
   overlay.classList.toggle("open");
   moduleAccount.classList.toggle("open");
-  body.classList.toggle("noscroll")
+  body.classList.toggle("noscroll");
 };
 
 var toggleCart = function () {
@@ -210,7 +205,7 @@ var toggleCart = function () {
   headerIconCart.classList.toggle("active");
   overlay.classList.toggle("open");
   moduleCart.classList.toggle("open");
-  body.classList.toggle("noscroll")
+  body.classList.toggle("noscroll");
 };
 
 // add new paragraph
