@@ -2,7 +2,7 @@
 
 // Include gulp
 var gulp = require('gulp'),
-  config = require('./gulp.config');
+  __ = require('./gulp.config');
 
 // Include Our Plugins
 var wiredep = require('wiredep').stream,
@@ -20,14 +20,14 @@ var wiredep = require('wiredep').stream,
 
 var paths = {
   'src': {
-    'index': config.dirs.src + config.files.index,
-    'css': config.dirs.src + config.files.css,
-    'js': config.dirs.src + config.files.js,
+    'index': __.dirs.src + __.files.index,
+    'css': __.dirs.src + __.files.css,
+    'js': __.dirs.src + __.files.js,
   }, 
   'dest': {
-    'index': config.dirs.dest + config.files.index,
-    'css': config.dirs.dest + config.files.css,
-    'js': config.dirs.dest + config.files.js,
+    'index': __.dirs.dest + __.files.index,
+    'css': __.dirs.dest + __.files.css,
+    'js': __.dirs.dest + __.files.js,
   }
 };
 
@@ -36,18 +36,18 @@ gulp.task('browser:src', function() {
     console.log('START browser:src');
     browser.init({
         server: {
-            baseDir: config.dirs.src,
-            index: config.files.index
+            baseDir: __.dirs.src,
+            index: __.files.index
         }
     });
-    gulp.watch(config.files.js, function () {
+    gulp.watch(__.files.js, function () {
       console.log('change to js');
     });
-    gulp.watch(config.files.css, function () {
+    gulp.watch(__.files.css, function () {
       console.log('change to css');
     });
-    // gulp.watch(config.files.html).on('change', browser.reload);
-    gulp.watch(config.files.html, function () {
+    // gulp.watch(__.files.html).on('change', browser.reload);
+    gulp.watch(__.files.html, function () {
       console.log('change to html');
     }).on('change', browser.reload);
 });
@@ -57,33 +57,33 @@ gulp.task('browser:dest', function() {
     console.log('START browser:dest');
     browser.init({
         server: {
-            baseDir: config.dirs.dest,
-            index: config.files.index
+            baseDir: __.dirs.dest,
+            index: __.files.index
         }
     });
-    gulp.watch(config.files.js, function () {
+    gulp.watch(__.files.js, function () {
       console.log('change to js');
     });
-    gulp.watch(config.files.css, function () {
+    gulp.watch(__.files.css, function () {
       console.log('change to css');
     });
-    // gulp.watch(config.files.html).on('change', browser.reload);
-    gulp.watch(config.files.html, function () {
+    // gulp.watch(__.files.html).on('change', browser.reload);
+    gulp.watch(__.files.html, function () {
       console.log('change to html');
     }).on('change', browser.reload);
 });
 
 gulp.task('clean', function() {
   return del([
-    config.dirs.dest+'*',config.dirs.src+'**/*.min.*'
+    __.dirs.dest+'*',__.dirs.src+'**/*.min.*'
   ])
 });
 
 gulp.task('jshint', function() {
   return gulp.src([
-    config.dirs.src+config.files.js,
-    '!'+config.dirs.src+'js/*.min.js',
-    '!'+config.dirs.src+'js/clientlibs.*.js'
+    __.dirs.src + __.files.js,
+    '!' + __.dirs.src + 'js/*.min.js',
+    '!' + __.dirs.src + 'js/clientlibs.*.js'
   ])
   .pipe(jshint())
   .pipe(jshint.reporter('default'));
@@ -96,68 +96,79 @@ function callback (error) {
 gulp.task('min-js', function(callback) {
   // return gulp.src(paths.src.js)
   //   .pipe(concat('app.concat.js'))
-  //   // .pipe(gulp.dest(config.dirs.dest+config.dirs.js))
+  //   // .pipe(gulp.dest(__.dirs.dest + __.dirs.js))
   //   .pipe(rename('app.concat.min.js'))
   //   .pipe(uglify({
   //     preserveComments: 'license'
   //   }))
-  //   .pipe(gulp.dest(config.dirs.dest+config.dirs.js));
+  //   .pipe(gulp.dest(__.dirs.dest + __.dirs.js));
   // Use 'pump' to allow errors to flow through 'piped' sub-tasks
   pump([
     gulp.src(paths.src.js),
     concat('app.concat.js', {newLine:'\r\n'}),
-    // gulp.dest(config.dirs.dest+config.dirs.js),
+    // gulp.dest(__.dirs.dest + __.dirs.js),
     rename('app.concat.min.js'),
     uglify({
       preserveComments: 'license'
     }),
-    gulp.dest(config.dirs.dest+config.dirs.js)
+    gulp.dest(__.dirs.dest + __.dirs.js)
   ], callback);
 });
 
 gulp.task('min-css', function(callback) {
   // return gulp.src(paths.src.css)
   //   .pipe(concat('app.concat.css', {newLine:'\r\n'}))
-  //   // .pipe(gulp.dest(config.dirs.dest+config.dirs.css))
+  //   // .pipe(gulp.dest(__.dirs.dest + __.dirs.css))
   //   .pipe(cleanCSS({debug: true}, function(details) {
   //     console.log(details.name + ': ' + details.stats.originalSize);
   //     console.log(details.name + ': ' + details.stats.minifiedSize);
   //   }))
   //   .pipe(rename('app.concat.min.css'))
-  //   .pipe(gulp.dest(config.dirs.dest+config.dirs.css));
+  //   .pipe(gulp.dest(__.dirs.dest + __.dirs.css));
   pump([
     gulp.src(paths.src.css),
     concat('app.concat.css', {newLine:'\r\n'}),
-    // gulp.dest(config.dirs.dest+config.dirs.css),
+    // gulp.dest(__.dirs.dest + __.dirs.css),
     cleanCSS({debug: true}, function(details) {
       console.log(details.name + ': ' + details.stats.originalSize);
       console.log(details.name + ': ' + details.stats.minifiedSize);
     }),
     rename('app.concat.min.css'),
-    gulp.dest(config.dirs.dest+config.dirs.css)
+    gulp.dest(__.dirs.dest + __.dirs.css)
   ], callback);
 });
 
 gulp.task('copy', function() {
-  copy([paths.src.index],'dest',function(err, files) {
-    if (err) {
-      console.log('error', err);
+  copy(
+    [
+      './src/*.html',
+      './src/lib/**/*.min.*'
+    ],
+    // [
+    //   __.files.index,
+    //   // __.dirs.src + __.dirs.lib
+    // ],
+    __.dirs.dest,
+    function(err, files) {
+      if (err) {
+        console.log('error', err);
+      }
     }
-  })
+  )
 });
 
 gulp.task('wiredeps', function() {
-  gulp.src(paths.src.index)
-    .pipe(wiredep({
-    }))
-    .pipe(gulp.dest(config.dirs.dest));
+  return gulp
+    .src(paths.src.index)
+    .pipe(wiredep())
+    .pipe(gulp.dest(__.dirs.dest));
 });
 
 // Dev Mega Task 
-gulp.task('dev', [ 'clean','jshint','wiredeps','browser:src' ]);
+gulp.task('dev', [ 'clean', 'jshint', 'wiredeps', 'browser:src' ]);
 
 // Prod Mega Task
-gulp.task('min', [ 'clean','jshint','min-css','min-js' ]);
+gulp.task('min', [ 'clean', 'jshint', 'min-css', 'min-js' ]);
 
 // Default Mega Task
-gulp.task('default', [ 'clean','jshint','min-css','min-js','wiredeps','browser:dest' ]);
+gulp.task('default', [ 'clean', 'jshint', 'min-css', 'min-js', 'browser:dest' ]);
