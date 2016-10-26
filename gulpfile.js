@@ -2,32 +2,30 @@
 
 // Include gulp
 var gulp = require('gulp'),
-  __ = require('./gulp.config');
+  conf = require('./gulp.config');
 
-// Include Our Plugins
+// Load "gulp-*" plugins automatically...
+var plugins = require('gulp-load-plugins')();
+
+// Load plugins manually...
 var wiredep = require('wiredep').stream,
   browser = require('browser-sync').create(),
   copy = require('copy'),
-  cleanCSS = require('gulp-clean-css'),
   del = require('del'),
-  jshint = require('gulp-jshint'),
-  pump = require('pump'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename'),
-  usemin = require('gulp-usemin'),
-  rev = require('gulp-rev');
+  pump = require('pump');
 
 var paths = {
   'src': {
-    'index': __.dirs.src + __.files.index,
-    'css': __.dirs.src + __.files.css,
-    'js': __.dirs.src + __.files.js,
+    'index': conf.dirs.src + conf.files.index,
+    'html': conf.dirs.src + conf.files.any.html,
+    'css': conf.dirs.src + conf.files.any.css,
+    'js': conf.dirs.src + conf.files.any.js,
   }, 
   'dest': {
-    'index': __.dirs.dest + __.files.index,
-    'css': __.dirs.dest + __.files.css,
-    'js': __.dirs.dest + __.files.js,
+    'index': conf.dirs.dest + conf.files.index,
+    'html': conf.dirs.dest + conf.files.any.html,
+    'css': conf.dirs.dest + conf.files.any.css,
+    'js': conf.dirs.dest + conf.files.any.js,
   }
 };
 
@@ -36,18 +34,18 @@ gulp.task('browser:src', function() {
     console.log('START browser:src');
     browser.init({
         server: {
-            baseDir: __.dirs.src,
-            index: __.files.index
+            baseDir: conf.dirs.src,
+            index: conf.files.index
         }
     });
-    gulp.watch(__.files.js, function () {
+    gulp.watch(conf.files.js, function () {
       console.log('change to js');
     });
-    gulp.watch(__.files.css, function () {
+    gulp.watch(conf.files.css, function () {
       console.log('change to css');
     });
-    // gulp.watch(__.files.html).on('change', browser.reload);
-    gulp.watch(__.files.html, function () {
+    // gulp.watch(conf.files.html).on('change', browser.reload);
+    gulp.watch(conf.files.html, function () {
       console.log('change to html');
     }).on('change', browser.reload);
 });
@@ -57,98 +55,85 @@ gulp.task('browser:dest', function() {
     console.log('START browser:dest');
     browser.init({
         server: {
-            baseDir: __.dirs.dest,
-            index: __.files.index
+            baseDir: conf.dirs.dest,
+            index: conf.files.index
         }
     });
-    gulp.watch(__.files.js, function () {
+    gulp.watch(conf.files.js, function () {
       console.log('change to js');
     });
-    gulp.watch(__.files.css, function () {
+    gulp.watch(conf.files.css, function () {
       console.log('change to css');
     });
-    // gulp.watch(__.files.html).on('change', browser.reload);
-    gulp.watch(__.files.html, function () {
+    // gulp.watch(conf.files.html).on('change', browser.reload);
+    gulp.watch(conf.files.html, function () {
       console.log('change to html');
     }).on('change', browser.reload);
 });
 
 gulp.task('clean', function() {
   return del([
-    __.dirs.dest+'*',__.dirs.src+'**/*.min.*'
+    conf.dirs.dest+'*',conf.dirs.src+'**/*.min.*'
   ])
 });
 
 gulp.task('jshint', function() {
-  return gulp.src([
-    __.dirs.src + __.files.js,
-    '!' + __.dirs.src + 'js/*.min.js',
-    '!' + __.dirs.src + 'js/clientlibs.*.js'
-  ])
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'));
+  return gulp
+    .src([
+      conf.dirs.src + conf.files.js,
+      '!' + conf.dirs.src + 'js/*.min.js',
+      '!' + conf.dirs.src + 'js/clientlibs.*.js'
+    ])
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('default'));
 });
 
-function callback (error) {
- console.log('error', error);
-}
+// function errors (error) {
+//   console.log('error', error);
+// }
 
-gulp.task('min-js', function(callback) {
-  // return gulp.src(paths.src.js)
-  //   .pipe(concat('app.concat.js'))
-  //   // .pipe(gulp.dest(__.dirs.dest + __.dirs.js))
-  //   .pipe(rename('app.concat.min.js'))
-  //   .pipe(uglify({
-  //     preserveComments: 'license'
-  //   }))
-  //   .pipe(gulp.dest(__.dirs.dest + __.dirs.js));
-  // Use 'pump' to allow errors to flow through 'piped' sub-tasks
+gulp.task('min-js', function(errors) {
+  console.log('paths.src.js: ', paths.src.js);
   pump([
     gulp.src(paths.src.js),
-    concat('app.concat.js', {newLine:'\r\n'}),
-    // gulp.dest(__.dirs.dest + __.dirs.js),
-    rename('app.concat.min.js'),
-    uglify({
-      preserveComments: 'license'
+    // gulp.src('./src/js/*.js'),
+    plugins.concat('app.concat.js', {newLine:'\r\n'}),
+    gulp.dest(conf.dirs.dest + conf.dirs.js),
+    plugins.rename('app.concat.min.js'),
+    plugins.uglify({
+      // preserveComments: 'license'
     }),
-    gulp.dest(__.dirs.dest + __.dirs.js)
-  ], callback);
+    gulp.dest(conf.dirs.dest + conf.dirs.js)
+    // gulp.dest('./dest/js/')
+  ], errors);
 });
 
-gulp.task('min-css', function(callback) {
-  // return gulp.src(paths.src.css)
-  //   .pipe(concat('app.concat.css', {newLine:'\r\n'}))
-  //   // .pipe(gulp.dest(__.dirs.dest + __.dirs.css))
-  //   .pipe(cleanCSS({debug: true}, function(details) {
-  //     console.log(details.name + ': ' + details.stats.originalSize);
-  //     console.log(details.name + ': ' + details.stats.minifiedSize);
-  //   }))
-  //   .pipe(rename('app.concat.min.css'))
-  //   .pipe(gulp.dest(__.dirs.dest + __.dirs.css));
+gulp.task('min-css', function(errors) {
   pump([
     gulp.src(paths.src.css),
-    concat('app.concat.css', {newLine:'\r\n'}),
-    // gulp.dest(__.dirs.dest + __.dirs.css),
-    cleanCSS({debug: true}, function(details) {
+    plugins.concat('app.concat.css', {newLine:'\r\n'}),
+    gulp.dest(conf.dirs.dest + conf.dirs.css),
+    plugins.cleanCss({debug: true}, function(details) {
       console.log(details.name + ': ' + details.stats.originalSize);
       console.log(details.name + ': ' + details.stats.minifiedSize);
     }),
-    rename('app.concat.min.css'),
-    gulp.dest(__.dirs.dest + __.dirs.css)
-  ], callback);
+    plugins.rename('app.concat.min.css'),
+    gulp.dest(conf.dirs.dest + conf.dirs.css)
+  ], errors);
 });
 
 gulp.task('copy', function() {
   copy(
     [
       './src/*.html',
-      './src/lib/**/*.min.*'
+      '../bower_components/**/*.js',
+      '../bower_components/**/*.css'
     ],
     // [
-    //   __.files.index,
-    //   // __.dirs.src + __.dirs.lib
+    //   conf.files.index,
+    //   // conf.dirs.src + conf.dirs.lib
     // ],
-    __.dirs.dest,
+    conf.dirs.dest,
     function(err, files) {
       if (err) {
         console.log('error', err);
@@ -161,14 +146,18 @@ gulp.task('wiredeps', function() {
   return gulp
     .src(paths.src.index)
     .pipe(wiredep())
-    .pipe(gulp.dest(__.dirs.dest));
+    .pipe(gulp.dest(conf.dirs.dest));
 });
 
-// Dev Mega Task 
+gulp.task('show', function() {
+  console.log('plugins: ', plugins);
+});
+
+// Minification Task
+gulp.task('min', [ 'min-css', 'min-js' ]);
+
+// DEV Task 
 gulp.task('dev', [ 'clean', 'jshint', 'wiredeps', 'browser:src' ]);
 
-// Prod Mega Task
-gulp.task('min', [ 'clean', 'jshint', 'min-css', 'min-js' ]);
-
-// Default Mega Task
-gulp.task('default', [ 'clean', 'jshint', 'min-css', 'min-js', 'browser:dest' ]);
+// Default PROD Task
+gulp.task('default', [ 'clean', 'jshint', 'min', 'wiredeps', 'browser:dest' ]);
