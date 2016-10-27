@@ -26,12 +26,12 @@ var carousel = document.getElementsByClassName("carousel")[0],
 var intervalID, 
   scrollingFlag = false;
 
-var autoScroll = function () {
+function autoScroll () {
   // console.log('START autoScroll');
   carouselNavDots[0].classList.add("active");
   // set up an interval
   intervalID = window.setInterval(doScroll, 2000);
-};
+}
 
 // start automatically scrolling
 function doScroll() {
@@ -83,12 +83,12 @@ function scrollControl() {
 
 /* HANDLE WINDOW RESIZING */
 
-var resizeWindow = function () { 
+function resizeWindow () { 
   windowHeight = window.innerHeight;
   windowWidth = window.innerWidth;
   carouselItemWidth = carousel.clientWidth;
   carouselListWidth = carouselList.clientWidth;
   // carousel.scrollLeft = 0;
-};
+}
 resizeWindow();
 window.onresize = resizeWindow;

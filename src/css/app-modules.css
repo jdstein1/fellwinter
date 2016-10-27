@@ -17,16 +17,23 @@
 #header--account, 
 #header--cart {float: right !important;}
 /* NAV MENU */
-#menu #menu--root {background-color: #eee;}
-#menu .menu--sub {background-color: #ddd;}
+#menu ul {background-color: rgba(0, 0, 0, 0.0625);}
+// #menu .menu--sub {background-color: rgba(0, 0, 0, 0.125);}
 #menu ul {width: 100%;}
-#menu ul li {display: block;}
-#menu #menu--root li {border-bottom: 1px solid #ccc;}
-#menu .menu--sub li {
-  padding-left: 1em;
-  border-bottom:none;
-  border-top: 1px solid #ccc;
+#header ul li, #header ul li a, #menu ul li, #menu ul li a {display: block;}
+#menu ul li a, #header ul li a {
+  padding: 0.5em;
+  line-height: 2;
 }
+ul#menu--root > li {border-bottom: 1px solid rgba(0, 0, 0, 0.125);}
+#menu .menu--sub li {
+  // padding-left: 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: none;
+}
+#menu ul.menu--sub > li > a {padding-left:1em;}
+#menu ul.menu--sub > li > ul.menu--sub > li > a {padding-left:1.5em;}
+#menu ul.menu--sub > li > ul.menu--sub > li > ul.menu--sub > li > a {padding-left:2em;}
 /* SEARCH */
 #search,
 #search #search-autocomplete,

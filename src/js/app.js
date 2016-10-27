@@ -31,28 +31,18 @@ var body = document.getElementsByTagName("body")[0],
     searchHistory = document.getElementById("search-history"), 
     timeout = null;
 
+/**
+ * CLICK HANDLERS 
+ * attach click handlers to page elements (links/buttons/icons)
+*/
+
+/** HEADER click handlers */
+
 headerIconMenu.addEventListener('click', function () {
   console.log('CLICK MENU ICON');
   toggleMenu();
 });
 
-
-overlay.addEventListener('click', function () {
-  console.log('CLICK OVERLAY');
-  closeAll();
-});
-
-// modalClose.addEventListener('click', function () {
-//   console.log('CLICK MODAL CLOSE');
-//   closeAll();
-// });
-
-// attach "closeAll" func to all modal close icons via click event listener.
-for (var i = 0; i < modalClose.length; i++) {
-  modalClose[i].onclick = closeAll;
-}
-
-// attach 
 headerIconSearch.addEventListener('click', function () {
   console.log('CLICK SEARCH ICON');
   toggleSearch();
@@ -67,6 +57,20 @@ headerIconCart.addEventListener('click', function () {
   console.log('CLICK CART ICON');
   toggleCart();
 });
+
+/** MENU click handlers */
+
+menuHome.addEventListener('click', function () {
+  console.log('CLICK HOME MENU LINK');
+  showPage('home');
+});
+
+menuAbout.addEventListener('click', function () {
+  console.log('CLICK ABOUT MENU LINK');
+  showPage('about');
+});
+
+/** SEARCH BAR click handlers */
 
 inputSearch.addEventListener('focus', function () {
   console.log('TYPING IN SEARCH INPUT');
@@ -94,6 +98,89 @@ buttonSearchGo.addEventListener('click', function () {
   console.log('CLICK SEARCH GO BUTTON');
 });
 
+/**
+ * CLICK ACTION FUNCTIONS
+ */
+
+function toggleSearchCloseClear () {
+  if (inputSearch.value) {
+    searchClear.classList.add("open");
+    searchClose.classList.remove("open");
+    searchAutocomplete.classList.add("open");
+    searchHistory.classList.remove("open");
+  } else {
+    searchClear.classList.remove("open");
+    searchClose.classList.add("open");
+    searchAutocomplete.classList.remove("open");
+    searchHistory.classList.add("open");
+  }
+}
+
+function closeAll () {
+  console.group('START closeAll');
+  // close menu, account, cart
+  var array = [menu, account, cart];
+  console.log('iterate array: ', array);
+  for (var i = 0; i < array.length; i++) {
+    // if (array[i].classList.contains("open")) {
+      // console.log('closeAll id: ', array[i].id);
+      var elId = "header--"+array[i].id;
+      console.log('el: ', document.getElementById(elId));
+      var el = document.getElementById(elId);
+      el.classList.remove("active");
+      console.log('array['+i+']: ', array[i]);
+      array[i].classList.remove("open");
+    // }
+  }
+  overlay.classList.remove("open");
+  body.classList.remove("noscroll");
+  console.groupEnd();
+}
+
+function toggleMenu () {
+  console.log('START toggleMenu');
+  closeAll();
+  // if (menu.classList.contains("open")) {
+  //   console.log('menu is open');
+  // } else {
+  //   console.log('menu is closed');
+  // }
+  headerIconMenu.classList.toggle("active");
+  menu.classList.toggle("open");
+  overlay.classList.toggle("open");
+  body.classList.toggle("noscroll");
+}
+
+function toggleSearch () {
+  console.log('START toggleSearch');
+  closeAll();
+  headerIconSearch.classList.toggle("active");
+  moduleSearch.classList.toggle("open");
+  searchAutocomplete.classList.remove("open");
+  searchHistory.classList.remove("open");
+}
+toggleSearch();
+
+function toggleAccount () {
+  console.log('START toggleAccount');
+  closeAll();
+  headerIconAccount.classList.toggle("active");
+  overlay.classList.toggle("open");
+  moduleAccount.classList.toggle("open");
+  body.classList.toggle("noscroll");
+}
+
+function toggleCart () {
+  console.log('START toggleCart');
+  closeAll();
+  headerIconCart.classList.toggle("active");
+  overlay.classList.toggle("open");
+  moduleCart.classList.toggle("open");
+  body.classList.toggle("noscroll");
+}
+
+/* LOAD PAGES VIA XHR */
+
 function showPage(page) {
   // load HOME content...
   var xhr = new XMLHttpRequest();
@@ -107,112 +194,9 @@ function showPage(page) {
   closeAll();
 }
 
-// menuHome.addEventListener('click', function () {
-//   console.log('CLICK HOME MENU LINK');
-//   showHome();
-// });
-
-// function showAbout() {
-//   // load ABOUT content...
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('GET', 'about.html', true);
-//   xhr.onreadystatechange = function() {
-//       if (this.readyState !== 4) return;
-//       if (this.status !== 200) return; // or whatever error handling you want
-//       main.innerHTML = this.responseText;
-//   };
-//   xhr.send();
-// }
-
-// menuAbout.addEventListener('click', function () {
-//   console.log('CLICK ABOUT MENU LINK');
-//   showAbout();
-// });
-
-var toggleSearchCloseClear = function () {
-  if (inputSearch.value) {
-    searchClear.classList.add("open");
-    searchClose.classList.remove("open");
-    searchAutocomplete.classList.add("open");
-    searchHistory.classList.remove("open");
-  } else {
-    searchClear.classList.remove("open");
-    searchClose.classList.add("open");
-    searchAutocomplete.classList.remove("open");
-    searchHistory.classList.add("open");
-  }
-};
-
-function closeAll () {
-  console.log('START closeAll');
-  // close menu, account, cart
-  var array = [menu, account, cart];
-  for (var i = 0; i < array.length; i++) {
-    // if (array[i].classList.contains("open")) {
-      console.log('closeAll: ', array[i].id);
-      var elId = "header--"+array[i].id;
-      console.log(document.getElementById(elId));
-      document.getElementById(elId).classList.remove("active");
-      array[i].classList.remove("open");
-    // }
-  }
-  overlay.classList.remove("open");
-  body.classList.remove("noscroll");
-}
-
-var toggleHeaderItem = function () {
-  console.log('START toggleHeaderItem');
-  closeAll();
-  headerIconAccount.classList.toggle("active");
-  overlay.classList.toggle("open");
-  moduleAccount.classList.toggle("open");
-  body.classList.toggle("noscroll");
-};
-
-var toggleMenu = function () {
-  console.log('START toggleMenu');
-  closeAll();
-  // if (menu.classList.contains("open")) {
-  //   console.log('menu is open');
-  // } else {
-  //   console.log('menu is closed');
-  // }
-  headerIconMenu.classList.toggle("active");
-  menu.classList.toggle("open");
-  overlay.classList.toggle("open");
-  body.classList.toggle("noscroll");
-};
-
-var toggleSearch = function () {
-  console.log('START toggleSearch');
-  closeAll();
-  headerIconSearch.classList.toggle("active");
-  moduleSearch.classList.toggle("open");
-  searchAutocomplete.classList.remove("open");
-  searchHistory.classList.remove("open");
-};
-toggleSearch();
-
-var toggleAccount = function () {
-  console.log('START toggleAccount');
-  closeAll();
-  headerIconAccount.classList.toggle("active");
-  overlay.classList.toggle("open");
-  moduleAccount.classList.toggle("open");
-  body.classList.toggle("noscroll");
-};
-
-var toggleCart = function () {
-  console.log('START toggleCart');
-  closeAll();
-  headerIconCart.classList.toggle("active");
-  overlay.classList.toggle("open");
-  moduleCart.classList.toggle("open");
-  body.classList.toggle("noscroll");
-};
 
 // add new paragraph
-var addPara = function (number) { 
+function addPara (number) { 
   for (var i = 0; i < number; i++) {
     console.log('START addPara');
     var newPara = document.createElement('p');
@@ -220,7 +204,7 @@ var addPara = function (number) {
     newPara.appendChild(newLorem);
     lorem.appendChild(newPara);
   }
-};
+}
 addPara(20);
 
 // replace welcome text

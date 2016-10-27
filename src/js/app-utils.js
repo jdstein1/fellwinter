@@ -1,4 +1,4 @@
-/* HEADER FUNCTIONS */
+/* UTILITY FUNCTIONS */
 
 /* @license */
 
@@ -6,4 +6,3 @@
 // var $ = function (selector) {
 //   return document.querySelector(selector);
 // };
-
