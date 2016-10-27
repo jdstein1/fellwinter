@@ -70,6 +70,18 @@ menuAbout.addEventListener('click', function () {
   showPage('about');
 });
 
+/** MODAL click handlers */
+
+console.log('MODAL CLOSE: ', modalClose);
+for (var i = 0; i < modalClose.length; i++) {
+  console.log('CLOSE A MODAL: ', modalClose[i]);
+  modalClose[i].onclick = closeAll();
+}
+// modalClose.addEventListener('click', function () {
+//   console.log('CLOSE A MODAL');
+//   closeAll();
+// });
+
 /** SEARCH BAR click handlers */
 
 inputSearch.addEventListener('focus', function () {
@@ -118,20 +130,26 @@ function toggleSearchCloseClear () {
 
 function closeAll () {
   console.group('START closeAll');
-  // close menu, account, cart
+  // make array of things that need to be closed
   var array = [menu, account, cart];
-  console.log('iterate array: ', array);
+  // iterate over array
+  console.log('array: ', array);
+  console.group('iterate array...');
   for (var i = 0; i < array.length; i++) {
+    console.group('array['+i+']: '+array[i].id);
     // if (array[i].classList.contains("open")) {
       // console.log('closeAll id: ', array[i].id);
       var elId = "header--"+array[i].id;
-      console.log('el: ', document.getElementById(elId));
+      // console.log('el: ', document.getElementById(elId));
       var el = document.getElementById(elId);
       el.classList.remove("active");
-      console.log('array['+i+']: ', array[i]);
+      // console.log('array['+i+']: ', array[i]);
+      console.log('array['+i+'].classList.value: ', array[i].classList.value);
       array[i].classList.remove("open");
     // }
+    console.groupEnd();
   }
+  console.groupEnd();
   overlay.classList.remove("open");
   body.classList.remove("noscroll");
   console.groupEnd();
@@ -163,20 +181,20 @@ toggleSearch();
 
 function toggleAccount () {
   console.log('START toggleAccount');
-  closeAll();
+  // closeAll();
   headerIconAccount.classList.toggle("active");
-  overlay.classList.toggle("open");
+  // overlay.classList.toggle("open");
+  // body.classList.toggle("noscroll");
   moduleAccount.classList.toggle("open");
-  body.classList.toggle("noscroll");
 }
 
 function toggleCart () {
   console.log('START toggleCart');
   closeAll();
   headerIconCart.classList.toggle("active");
-  overlay.classList.toggle("open");
+  // overlay.classList.toggle("open");
+  // body.classList.toggle("noscroll");
   moduleCart.classList.toggle("open");
-  body.classList.toggle("noscroll");
 }
 
 /* LOAD PAGES VIA XHR */

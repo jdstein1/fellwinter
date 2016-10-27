@@ -1,10 +1,22 @@
-/* CAROUSEL FUNCTIONS */
+/**
+ * CAROUSEL FUNCTIONS
+ *
+ * issues:
+ * - resizing carousel smaller causes:
+ *     - hang on last slide
+ *     - active dot disappears
+ *     + carouselIndex keeps incrementing!
+ * - resizing carousel bigger = no problems
+ * - resizing carousel bigger after resizing smaller = fixes issue above
+ */
 
 /* @license */
 
 var carousel = document.getElementsByClassName("carousel")[0], 
   carouselList = document.getElementsByClassName("carousel-list")[0], 
   carouselListItems = document.getElementsByClassName("carousel-item"), 
+  carouselItemWidth = carousel.clientWidth, 
+  carouselListWidth = carouselList.clientWidth, 
   carouselNav = document.getElementsByClassName("carousel-nav")[0], 
   carouselNavDots = document.getElementsByClassName("carousel-dot"), 
   scrollControl1 = document.getElementById("scrollControl1"), 
@@ -28,14 +40,16 @@ var intervalID,
 
 function autoScroll () {
   // console.log('START autoScroll');
-  carouselNavDots[0].classList.add("active");
   // set up an interval
   intervalID = window.setInterval(doScroll, 2000);
 }
 
 // start automatically scrolling
 function doScroll() {
-  // console.log('START doScroll: '+carousel.scrollLeft);
+  console.log('START doScroll');
+  console.log('carousel.scrollLeft: ', carousel.scrollLeft);
+  console.log('carouselItemWidth: ', carouselItemWidth);
+  console.log('carouselListWidth: ', carouselListWidth);
   // set flag to true to indicate autoscrolling has started.
   scrollingFlag = true;
   for (var i = 0; i < carouselNavDots.length; i++) {
@@ -43,19 +57,26 @@ function doScroll() {
   }
   // check if left offset is greater than or equal to width of whole 
   // carousel minus width of one item...
-  if (carousel.scrollLeft >= (carouselListWidth-carouselItemWidth)) {
+  if (
+      carousel.scrollLeft >= ((carouselItemWidth * carouselLength) - carouselItemWidth)
+    ) {
     // scroll to the first item (left offset 0)
     carousel.scrollLeft = 0;
     carouselIndex = 0;
+    carouselNavDots[carouselIndex].classList.add("active");
   } else {
     // scroll to next one by adding item width to left offset
-    carousel.scrollLeft += carouselItemWidth;
+    // carousel.scrollLeft += carouselItemWidth;
+    carousel.scrollLeft = (carouselIndex+1) * carouselItemWidth;
     carouselIndex++;
+    console.log('carouselIndex: ', carouselIndex);
+    console.log('carouselNavDots[carouselIndex].classList: ', carouselNavDots[carouselIndex].classList);
+    carouselNavDots[carouselIndex].classList.add("active");
   }
-  carouselNavDots[carouselIndex].classList.add("active");
+  // console.log('carouselIndex: ', carouselIndex);
 }
 
-// rause/resume automatically scrolling
+// rause/resume automatic scrolling
 function scrollControl() {
   // console.log('START scrollControl');
   if (scrollingFlag === true) {
@@ -84,11 +105,21 @@ function scrollControl() {
 /* HANDLE WINDOW RESIZING */
 
 function resizeWindow () { 
-  windowHeight = window.innerHeight;
-  windowWidth = window.innerWidth;
+  console.group('START resizeWindow');
+  // windowHeight = window.innerHeight;
+  // console.log('windowHeight: ', windowHeight);
+  // windowWidth = window.innerWidth;
+  // console.log('windowWidth: ', windowWidth);
   carouselItemWidth = carousel.clientWidth;
+  console.log('carouselItemWidth: ', carouselItemWidth);
   carouselListWidth = carouselList.clientWidth;
+  console.log('carouselListWidth: ', carouselListWidth);
   // carousel.scrollLeft = 0;
+  console.groupEnd();
+  // return carouselItemWidth;
+  window.clearInterval(intervalID);
+  scrollingFlag = false;
+  scrollControl();
 }
-resizeWindow();
+// resizeWindow();
 window.onresize = resizeWindow;

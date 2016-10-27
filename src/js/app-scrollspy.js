@@ -51,29 +51,29 @@ scrollEvents.forEach(function(event){
 });
 
 function tell() {
-  console.group('START tell');
+  // console.group('START tell');
 
-  console.log('oldPosition: ', oldPosition);
+  // console.log('oldPosition: ', oldPosition);
   newPosition = window.scrollY;
-  console.log('newPosition: ', newPosition);
+  // console.log('newPosition: ', newPosition);
 
   // should be same as window.scrollY
-  console.log('body.scrollTop: ', body.scrollTop);
+  // console.log('body.scrollTop: ', body.scrollTop);
 
   // the difference between old position and new position.
   var delta = (newPosition - oldPosition);
 
-  console.log('delta: ', delta);
+  // console.log('delta: ', delta);
   if (delta === 0) {
     console.log('window DID NOT scroll');
   } else if (delta > 0) {
-    console.log('window scrolled DOWN');
+    console.log('window scrolled DOWN: '+Math.abs(delta)+'px');
   } else {
-    console.log('window scrolled UP');
+    console.log('window scrolled UP: '+Math.abs(delta)+'px');
   }
   // set a new oldPosition for next run of funciton
   oldPosition = newPosition;
-  console.groupEnd();
+  // console.groupEnd();
 }
 
 var newNow = 0;
@@ -90,11 +90,11 @@ function start(el) {
   //   console.log('not zero');
   // }
   // setTimeout( function () {
-    console.log('-- position: '+el.offsetTop);
+    // console.log('-- position: '+el.offsetTop);
     // console.log('timeout: '+now.getMilliseconds());
     // console.log('-- newNow', newNow);
     // console.log('-- oldNow', oldNow);
-    console.log('-- timeout: '+( newNow - oldNow ));
+    // console.log('-- timeout: '+( newNow - oldNow ));
   // }, 1000);
   oldNow = newNow;
 }
