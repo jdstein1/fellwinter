@@ -145,19 +145,13 @@ Released under the MIT license: http://jsbin.mit-license.org
             <li class="carousel-item"><img src="http://www.fillmurray.com/400/399" alt="carousel item 5"><p>carousel item 5 caption</p></li>
           </ul>
         </div>
-        <ul class="carousel-nav">
-          <li class="carousel-dot">&middot;</li>
-          <li class="carousel-dot">&middot;</li>
-          <li class="carousel-dot">&middot;</li>
-          <li class="carousel-dot">&middot;</li>
-          <li class="carousel-dot">&middot;</li>
-        </ul>
+        <ul class="carousel-nav"></ul>
         <div class="content group">
           <fieldset class="grid2">
-            <button onclick="scrollControl()" id="scrollControl1" name="scrollControl1">Pause</button>
+            <button class="button primary" onclick="scrollControl()" id="scrollControl1" name="scrollControl1">Pause</button>
           </fieldset>
           <fieldset class="grid2">
-            <button onclick="scrollControl()" id="scrollControl2" name="scrollControl2" disabled>Play</button>
+            <button class="button" onclick="scrollControl()" id="scrollControl2" name="scrollControl2" disabled>Resume</button>
           </fieldset>
         </div>
       </div>
