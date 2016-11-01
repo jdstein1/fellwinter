@@ -38,11 +38,11 @@ var carouselIndex = 0,
 carouselNavDot.classList.add('carousel-dot');
 
 carouselItemW = window.innerWidth;
-console.log('carouselItemW: ', carouselItemW);
+// console.log('carouselItemW: ', carouselItemW);
 carousel.style.width = carouselItemW+'px';
 
 carouselListW = (carouselItemW * carouselLength);
-console.log('carouselListW: ', carouselListW);
+// console.log('carouselListW: ', carouselListW);
 carouselList.style.width = carouselListW+'px';
 
 // create nav dots.
@@ -66,9 +66,9 @@ function autoScroll () {
 
 // start automatically scrolling
 function doScroll() {
-  console.group('START doScroll');
+  // console.group('START doScroll');
 
-  console.log('timerElapsed: ', timerElapsed);
+  // console.log('timerElapsed: ', timerElapsed);
   timerReset();
 
   // console.log('carousel.scrollLeft: ', carousel.scrollLeft);
@@ -110,13 +110,16 @@ function doScroll() {
     carouselNavDots[carouselIndex].classList.add("active");
   }
   // console.log('carouselIndex: ', carouselIndex);
-  console.groupEnd();
+  // console.groupEnd();
 }
 
 // rause/resume automatic scrolling
 function scrollControl() {
-  console.log('START scrollControl: ', scrollingFlag);
+  // console.log('START scrollControl: ', scrollingFlag);
   if (scrollingFlag === true) {
+    if (timerBox) {
+      timerControl();
+    }
 
     // alter text of control button.
     scrollControl1.disabled = true;
@@ -128,6 +131,9 @@ function scrollControl() {
     window.clearInterval(intervalID);
 
   } else {
+    if (timerBox) {
+      timerReset();
+    }
 
     // alter text of control button.
     scrollControl1.disabled = false;
@@ -146,7 +152,7 @@ function scrollControl() {
 /* HANDLE WINDOW RESIZING */
 
 function resizeWindow () { 
-  console.group('START resizeWindow');
+  // console.group('START resizeWindow');
 
   // stop auto scrolling to recalculate widths...
   window.clearInterval(intervalID);
@@ -167,7 +173,7 @@ function resizeWindow () {
     carouselListItems[i].style.width = carouselItemW+'px';
   }
 
-  console.groupEnd();
+  // console.groupEnd();
 
   // restart auto scrolling with recalculated widths if not paused...
   if (scrollingFlag === true) {
