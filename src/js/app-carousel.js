@@ -1,15 +1,17 @@
 /**
  * CAROUSEL FUNCTIONS
- *
+ * 
  * issues:
- * * (-) resizing carousel smaller causes:
- *     * (x) ~~hang on last slide~~
- *     * (x) ~~active dot disappears~~
- *     * (x) ~~carouselIndex keeps incrementing!~~
- * * (-) resizing carousel bigger 
- *     * (=) no problems
- * * (-) resizing carousel bigger after resizing smaller 
- *     * (=) fixes issue above
+ * * [x] resizing carousel smaller causes:
+ *     * [x] hang on last slide
+ *     * [x] active dot disappears
+ *     * [x] carouselIndex keeps incrementing!
+ *  * [x] resizing carousel bigger after resizing smaller 
+ *     * [x] fixes issue above
+ *  * [x] resizing carousel bigger 
+ *     * [x] no problems
+ *  * [_] no swiping
+ *  
  */
 
 /* @license */
@@ -65,9 +67,13 @@ function autoScroll () {
 // start automatically scrolling
 function doScroll() {
   console.group('START doScroll');
-  console.log('carousel.scrollLeft: ', carousel.scrollLeft);
-  console.log('carouselItemW: ', carouselItemW);
-  console.log('carouselListW: ', carouselListW);
+
+  console.log('timerElapsed: ', timerElapsed);
+  timerReset();
+
+  // console.log('carousel.scrollLeft: ', carousel.scrollLeft);
+  // console.log('carouselItemW: ', carouselItemW);
+  // console.log('carouselListW: ', carouselListW);
 
   // set flag to true to indicate autoscrolling has started.
   scrollingFlag = true;
@@ -135,46 +141,38 @@ function scrollControl() {
   }
 }
 
-// window.setTimeout(function() {
-//     alert("Hello World!");
-// }, 500);
-
 /* MANUALLY SCROLL CAROUSEL */
 
 /* HANDLE WINDOW RESIZING */
 
 function resizeWindow () { 
   console.group('START resizeWindow');
+
+  // stop auto scrolling to recalculate widths...
   window.clearInterval(intervalID);
-  // windowHeight = window.innerHeight;
-  // console.log('windowHeight: ', windowHeight);
-  // windowWidth = window.innerWidth;
-  // console.log('windowWidth: ', windowWidth);
 
   carouselItemW = window.innerWidth;
-  console.log('carouselItemW: ', carouselItemW);
+  // console.log('carouselItemW: ', carouselItemW);
   carousel.style.width = carouselItemW+'px';
 
   carouselListW = (carouselItemW * carouselLength);
-  console.log('carouselListW: ', carouselListW);
+  // console.log('carouselListW: ', carouselListW);
   carouselList.style.width = carouselListW+'px';
+
+  // console.log('carouselIndex: ', carouselIndex);
+  carousel.scrollLeft = (carouselIndex) * carouselItemW;
 
   for (var i = 0; i < carouselLength; i++) {
     // set width of carousel item:
     carouselListItems[i].style.width = carouselItemW+'px';
   }
 
-  // carousel.scrollLeft = 0;
   console.groupEnd();
+
+  // restart auto scrolling with recalculated widths if not paused...
   if (scrollingFlag === true) {
-    // expression...
-  } else {
-    // expression...
+    autoScroll();
   }
-  // return carouselItemW;
-  // window.clearInterval(intervalID);
-  // scrollingFlag = false;
-  // scrollControl();
-  autoScroll();
+
 }
 window.onresize = resizeWindow;

@@ -75,7 +75,7 @@ menuAbout.addEventListener('click', function () {
 console.log('MODAL CLOSE: ', modalClose);
 for (var i = 0; i < modalClose.length; i++) {
   console.log('CLOSE A MODAL: ', modalClose[i]);
-  modalClose[i].onclick = closeAll();
+  modalClose[i].onclick = closeAll;
 }
 // modalClose.addEventListener('click', function () {
 //   console.log('CLOSE A MODAL');
