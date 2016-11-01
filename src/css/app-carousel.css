@@ -2,6 +2,7 @@
 .carousel-box {background-color: rgba(255,0,0,0.25);}
 .carousel {
   background-color: rgba(255,0,0,0.5);
+  display: block;
   width: 100%;
   overflow: auto;
   overflow-y: hidden;
@@ -9,11 +10,14 @@
 }
 .carousel-list {
   background-color: rgba(0,255,0,0.5);
-  width: 500%;
+  display: block;
+  /*width: 500%;*/
+  width: 2000px;
 }
 .carousel-item {
   background-color: rgba(0,0,255,0.5);
-  width: 20%;
+  /*width: 20%;*/
+  width: 400px;
   overflow: hidden;
   float: left;
 }

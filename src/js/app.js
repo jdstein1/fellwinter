@@ -133,10 +133,10 @@ function closeAll () {
   // make array of things that need to be closed
   var array = [menu, account, cart];
   // iterate over array
-  console.log('array: ', array);
-  console.group('iterate array...');
+  // console.log('array: ', array);
+  // console.group('iterate array...');
   for (var i = 0; i < array.length; i++) {
-    console.group('array['+i+']: '+array[i].id);
+    // console.group('array['+i+']: '+array[i].id);
     // if (array[i].classList.contains("open")) {
       // console.log('closeAll id: ', array[i].id);
       var elId = "header--"+array[i].id;
@@ -144,12 +144,12 @@ function closeAll () {
       var el = document.getElementById(elId);
       el.classList.remove("active");
       // console.log('array['+i+']: ', array[i]);
-      console.log('array['+i+'].classList.value: ', array[i].classList.value);
+      // console.log('array['+i+'].classList.value: ', array[i].classList.value);
       array[i].classList.remove("open");
     // }
-    console.groupEnd();
+    // console.groupEnd();
   }
-  console.groupEnd();
+  // console.groupEnd();
   overlay.classList.remove("open");
   body.classList.remove("noscroll");
   console.groupEnd();

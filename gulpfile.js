@@ -36,7 +36,11 @@ gulp.task('browser:src', function() {
         server: {
             baseDir: conf.dirs.src,
             index: conf.files.index
-        }
+        },
+        ui: {
+          port:4001
+        },
+        port:4000
     });
     gulp.watch(conf.files.js, function () {
       console.log('change to js');
@@ -57,7 +61,11 @@ gulp.task('browser:dest', function() {
         server: {
             baseDir: conf.dirs.dest,
             index: conf.files.index
-        }
+        },
+        ui: {
+          port:4001
+        },
+        port:4000
     });
     gulp.watch(conf.files.js, function () {
       console.log('change to js');

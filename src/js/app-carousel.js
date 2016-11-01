@@ -3,10 +3,9 @@
  *
  * issues:
  * * (-) resizing carousel smaller causes:
- *     * (-) hang on last slide
- *     * (-) active dot disappears
- *     * (+) carouselIndex keeps incrementing!
- *     * (=) FIXED!!!!!
+ *     * (x) ~~hang on last slide~~
+ *     * (x) ~~active dot disappears~~
+ *     * (x) ~~carouselIndex keeps incrementing!~~
  * * (-) resizing carousel bigger 
  *     * (=) no problems
  * * (-) resizing carousel bigger after resizing smaller 
@@ -21,6 +20,7 @@ var carousel = document.getElementsByClassName("carousel")[0],
   carouselListItems = document.getElementsByClassName("carousel-item"), 
   carouselNav = document.getElementsByClassName("carousel-nav")[0], 
   carouselNavDots = document.getElementsByClassName("carousel-dot"), 
+  carouselNavDot = document.createElement('li'),
   scrollControl1 = document.getElementById("scrollControl1"), 
   scrollControl2 = document.getElementById("scrollControl2");
 
@@ -28,17 +28,25 @@ var carousel = document.getElementsByClassName("carousel")[0],
 var carouselIndex = 0, 
   intervalID, 
   scrollingFlag = false, 
-  carouselItemW = carousel.clientWidth, 
-  carouselListW = carouselList.clientWidth, 
-  carouselLength = carouselListItems.length;
+  carouselItemW = window.innerWidth, 
+  carouselLength = carouselListItems.length,
+  carouselListW = (carouselItemW * carouselLength);
 
 // create dom elements
-var carouselNavDot = document.createElement('li');
 carouselNavDot.classList.add('carousel-dot');
 
+carouselItemW = window.innerWidth;
+console.log('carouselItemW: ', carouselItemW);
+carousel.style.width = carouselItemW+'px';
+
+carouselListW = (carouselItemW * carouselLength);
+console.log('carouselListW: ', carouselListW);
+carouselList.style.width = carouselListW+'px';
 
 // create nav dots.
 for (var i = 0; i < carouselLength; i++) {
+  // set width of carousel item:
+  carouselListItems[i].style.width = carouselItemW+'px';
   // clone nav dot
   var newDot = carouselNavDot.cloneNode();
   newDot.innerHTML = "&middot;";
@@ -66,8 +74,8 @@ function doScroll() {
   scrollControl1.disabled = false;
   scrollControl2.disabled = true;
 
+  // deactivate all nav dots
   for (var i = 0; i < carouselLength; i++) {
-    // deactivate all nav dots
     carouselNavDots[i].classList.remove("active");
   }
 
@@ -137,14 +145,25 @@ function scrollControl() {
 
 function resizeWindow () { 
   console.group('START resizeWindow');
+  window.clearInterval(intervalID);
   // windowHeight = window.innerHeight;
   // console.log('windowHeight: ', windowHeight);
   // windowWidth = window.innerWidth;
   // console.log('windowWidth: ', windowWidth);
-  carouselItemW = carousel.clientWidth;
+
+  carouselItemW = window.innerWidth;
   console.log('carouselItemW: ', carouselItemW);
-  carouselListW = carouselList.clientWidth;
+  carousel.style.width = carouselItemW+'px';
+
+  carouselListW = (carouselItemW * carouselLength);
   console.log('carouselListW: ', carouselListW);
+  carouselList.style.width = carouselListW+'px';
+
+  for (var i = 0; i < carouselLength; i++) {
+    // set width of carousel item:
+    carouselListItems[i].style.width = carouselItemW+'px';
+  }
+
   // carousel.scrollLeft = 0;
   console.groupEnd();
   if (scrollingFlag === true) {
@@ -156,6 +175,6 @@ function resizeWindow () {
   // window.clearInterval(intervalID);
   // scrollingFlag = false;
   // scrollControl();
+  autoScroll();
 }
-// resizeWindow();
 window.onresize = resizeWindow;
