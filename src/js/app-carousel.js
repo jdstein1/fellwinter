@@ -14,28 +14,32 @@
  *  
  */
 
-/* @license */
+/**
+ * @license
+ */
 
 // cache dom elements
-var carousel = document.getElementsByClassName("carousel")[0], 
-  carouselList = document.getElementsByClassName("carousel-list")[0], 
-  carouselListItems = document.getElementsByClassName("carousel-item"), 
-  carouselNav = document.getElementsByClassName("carousel-nav")[0], 
-  carouselNavDots = document.getElementsByClassName("carousel-dot"), 
-  carouselNavDot = document.createElement('li'),
-  scrollControl1 = document.getElementById("scrollControl1"), 
-  scrollControl2 = document.getElementById("scrollControl2");
+var carousel = document.querySelector(".carousel"),
+  carouselList = document.querySelector(".carousel-list"),
+  carouselListItems = Array.from(document.querySelectorAll(".carousel-item")),
+  carouselNav = document.querySelector(".carousel-nav"),
+  scrollControl1 = document.querySelector("#scrollControl1"),
+  scrollControl2 = document.querySelector("#scrollControl2");
+
+console.log('carousel: ', carousel);
+console.log('carouselList: ', carouselList);
+console.log('carouselListItems: ', carouselListItems);
+console.log('carouselNav: ', carouselNav);
+console.log('scrollControl1: ', scrollControl1);
+console.log('scrollControl2: ', scrollControl2);
 
 // misc vars
-var carouselIndex = 0, 
-  intervalID, 
-  scrollingFlag = false, 
-  carouselItemW = window.innerWidth, 
+var carouselIndex = 0,
+  intervalID,
+  scrollingFlag = false,
+  carouselItemW = window.innerWidth,
   carouselLength = carouselListItems.length,
   carouselListW = (carouselItemW * carouselLength);
-
-// create dom elements
-carouselNavDot.classList.add('carousel-dot');
 
 carouselItemW = window.innerWidth;
 // console.log('carouselItemW: ', carouselItemW);
@@ -44,6 +48,14 @@ carousel.style.width = carouselItemW+'px';
 carouselListW = (carouselItemW * carouselLength);
 // console.log('carouselListW: ', carouselListW);
 carouselList.style.width = carouselListW+'px';
+
+/** 
+ * MAKE NAV DOTS
+ */
+
+// create dom elements
+carouselNavDot = document.createElement('li');
+carouselNavDot.classList.add('carousel-dot');
 
 // create nav dots.
 for (var i = 0; i < carouselLength; i++) {
@@ -55,16 +67,28 @@ for (var i = 0; i < carouselLength; i++) {
   // attach to nav dot list
   carouselNav.appendChild(newDot);
 }
+carouselNavDots = Array.from(document.querySelectorAll(".carousel-dot"));
 carouselNavDots[0].classList.add("active");
 
-/* AUTOMATICALLY SCROLL CAROUSEL */
-function autoScroll () {
-  // console.log('START autoScroll');
+/**
+ * scrollInterval
+ * SCROLLING INTERVAL
+ * @return {[type]} [description]
+ */
+
+function scrollInterval () {
+  // console.log('START scrollInterval');
   // set up an interval
   intervalID = window.setInterval(doScroll, 2000);
 }
+scrollInterval(); // start scrolling on page load.
 
-// start automatically scrolling
+/**
+ * doScroll
+ * AUTOMATIC SCROLLING
+ * @return {[type]} [description]
+ */
+
 function doScroll() {
   // console.group('START doScroll');
 
@@ -75,24 +99,24 @@ function doScroll() {
   // console.log('carouselItemW: ', carouselItemW);
   // console.log('carouselListW: ', carouselListW);
 
-  // set flag to true to indicate autoscrolling has started.
+  /* set flag to true to indicate autoscrolling has started */
   scrollingFlag = true;
   scrollControl1.disabled = false;
   scrollControl2.disabled = true;
 
-  // deactivate all nav dots
+  /* deactivate all nav dots */
   for (var i = 0; i < carouselLength; i++) {
     carouselNavDots[i].classList.remove("active");
   }
 
-  // check if left offset is greater than or equal to width of whole 
-  // carousel minus width of one item...
+  /* if left offset is greater than or equal to width of whole 
+  carousel minus width of one item */
   if (carousel.scrollLeft >= ((carouselItemW * carouselLength) - carouselItemW)) {
     // scroll to the first item (left offset 0)
     carousel.scrollLeft = 0;
     carouselIndex = 0;
     // activate first nav dot
-    console.log('carouselIndex: ', carouselIndex);
+    // console.log('carouselIndex: ', carouselIndex);
     carouselNavDots[carouselIndex].classList.add("active");
   } else {
     // scroll to next one by adding item width to left offset
@@ -104,7 +128,7 @@ function doScroll() {
       carousel.scrollLeft = 0;
       carouselIndex = 0;
     }
-    console.log('carouselIndex: ', carouselIndex);
+    // console.log('carouselIndex: ', carouselIndex);
     // console.log('carouselNavDots[carouselIndex].classList: ', carouselNavDots[carouselIndex].classList);
     // activate correct nav dot
     carouselNavDots[carouselIndex].classList.add("active");
@@ -113,7 +137,7 @@ function doScroll() {
   // console.groupEnd();
 }
 
-// rause/resume automatic scrolling
+/* pause/resume automatic scrolling */
 function scrollControl() {
   // console.log('START scrollControl: ', scrollingFlag);
   if (scrollingFlag === true) {
@@ -142,14 +166,18 @@ function scrollControl() {
     // get the autoscroll interval going again.
     scrollingFlag = true;
 
-    autoScroll();
+    scrollInterval();
 
   }
 }
 
-/* MANUALLY SCROLL CAROUSEL */
+/**
+ * @license
+ * MANUALLY SCROLL CAROUSEL */
 
-/* HANDLE WINDOW RESIZING */
+/**
+ * @license
+ * HANDLE WINDOW RESIZING */
 
 function resizeWindow () { 
   // console.group('START resizeWindow');
@@ -177,7 +205,7 @@ function resizeWindow () {
 
   // restart auto scrolling with recalculated widths if not paused...
   if (scrollingFlag === true) {
-    autoScroll();
+    scrollInterval();
   }
 
 }

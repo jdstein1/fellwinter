@@ -179,9 +179,8 @@ gulp.task('g_show', function() {
 // Minification Task
 gulp.task('min', [ 'g_mincss', 'g_minjs' ]);
 
-// DEV Task 
-gulp.task('dev', [ 'g_clean', 'g_hint', 'g_deps', 'g_bs:src' ]);
+// DEST Task
+gulp.task('dest', [ 'g_clean', 'g_hint', 'min', 'g_copy:html', 'g_copy:lib', 'g_deps', 'g_inject', 'g_bs:dest' ]);
 
-// Default PROD Task
-gulp.task('default', [ 'g_clean', 'g_hint', 'min', 'g_copy:html', 'g_copy:lib', 'g_deps', 'g_inject', 'g_bs:dest' ]);
-
+// SRC Task 
+gulp.task('default', [ 'g_clean', 'g_hint', 'g_deps', 'g_bs:src' ]);
